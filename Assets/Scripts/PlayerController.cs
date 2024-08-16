@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movable : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+
+public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private float moveMult = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,28 +18,32 @@ public class Movable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.A))
         {
-            Debug.Log("left key was pressed");
-            gameObject.transform.position += Vector3.left;
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.left * moveMult;
+            //gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * moveMult);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
-            Debug.Log("right key was pressed");
-            gameObject.transform.position += Vector3.right;
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.right * moveMult;
+            //gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * moveMult);
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Debug.Log("up key was pressed");
-            gameObject.transform.position += Vector3.up;
-        }
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    Debug.Log("up key was pressed");
+        //    gameObject.transform.position += Vector3.up;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Debug.Log("down key was pressed");
-            gameObject.transform.position += Vector3.down;
-        }
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    Debug.Log("down key was pressed");
+        //    gameObject.transform.position += Vector3.down;
+        //}
     }
 }
