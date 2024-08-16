@@ -28,6 +28,19 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void PlayerDied()
+    {
+        // Decoupled from resetting the level because we might want to
+        // go back later and show a menu instead of resetting
+        ResetCurrentLevel();
+    }
+
+    public void ResetCurrentLevel()
+    {
+        Debug.Log("Retrying" + levelNames[nextLevelIndex - 1].ToString());
+        SceneManager.LoadScene(levelNames[nextLevelIndex - 1]);
+    }
+
     // this is because we don't want to interact with the "Welcome" scene
     void Start()
     {
