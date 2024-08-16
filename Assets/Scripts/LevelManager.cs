@@ -5,26 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    private static LevelManager instance;
+
     public List<string> levelNames;
     public string finalSceneName;
 
-    private int nextLevelIndex = 0;
+    public int currentLevelIndex;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != this)
+        {
+            Destroy(this);
+        }
     }
 
     public void LoadNextLevel()
     {
-        if (nextLevelIndex >= levelNames.Count)
+        if (instance.currentLevelIndex == instance.levelNames.Count - 1)
         {
             SceneManager.LoadScene("TheEnd");
         }
         else
         {
-            SceneManager.LoadScene(levelNames[nextLevelIndex]);
-            nextLevelIndex++;
+            instance.currentLevelIndex++;
+            SceneManager.LoadScene(instance.levelNames[instance.currentLevelIndex]);
         }
     }
 
@@ -37,13 +47,7 @@ public class LevelManager : MonoBehaviour
 
     public void ResetCurrentLevel()
     {
-        Debug.Log("Retrying" + levelNames[nextLevelIndex - 1].ToString());
-        SceneManager.LoadScene(levelNames[nextLevelIndex - 1]);
-    }
-
-    // this is because we don't want to interact with the "Welcome" scene
-    void Start()
-    {
-        LoadNextLevel();
+        Debug.Log("Retrying" + instance.levelNames[instance.currentLevelIndex].ToString());
+        SceneManager.LoadScene(instance.levelNames[instance.currentLevelIndex]);
     }
 }
