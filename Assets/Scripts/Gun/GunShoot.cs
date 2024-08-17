@@ -46,17 +46,24 @@ public class GunShoot : MonoBehaviour
             SetGunMode(Mode.MovementSpeedScale);
         }
 
-        // handle rotation
-        Vector3 mousePos = Input.mousePosition;
-        // Offset the camera's z position.
-        mousePos.z = camera.transform.position.z * -1;
-        mousePos = camera.ScreenToWorldPoint(mousePos);
-        Debug.DrawRay(transform.position, mousePos - transform.position, Color.green);
-
         if (Input.GetMouseButtonDown(0))
         {
             PlayRandomizedPitchAudioClip(fireAudioSource);
+
+            // Get world position of mouse.
+            Vector3 mousePos = Input.mousePosition;
+            // Offset the camera's z position.
+            mousePos.z = camera.transform.position.z * -1;
+            mousePos = camera.ScreenToWorldPoint(mousePos);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position);
+
+            Debug.Log(hit.transform.tag);
+            // If the hit is self, we clicked between the tip of the gun and ourselves.
+            // Try again with a raycast going in the other direction.
+            if (hit && hit.transform.tag == "Player")
+            {
+                hit = Physics2D.Raycast(transform.position, transform.position - mousePos);
+            }
             ProcessHit(hit);
         }
     }
@@ -85,7 +92,6 @@ public class GunShoot : MonoBehaviour
             return;
         }
 
-        
         if (currentMode == Mode.SizeScale)
         {
             SizeScaler hitScaler = hit.transform.gameObject.GetComponent<SizeScaler>();
