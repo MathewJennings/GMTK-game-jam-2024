@@ -42,12 +42,10 @@ public class GunShoot : MonoBehaviour
         // Set Gun Mode
         if (Input.GetKeyDown(KeyCode.Alpha1) && !disabledModes.Contains(Mode.SizeScale))
         {
-                PlayRandomizedPitchAudioClip(switchGunAudioSource);
             SetGunMode(Mode.SizeScale);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && !disabledModes.Contains(Mode.MovementSpeedScale))
         {
-            PlayRandomizedPitchAudioClip(switchGunAudioSource);
             SetGunMode(Mode.MovementSpeedScale);
         }
 
@@ -75,6 +73,15 @@ public class GunShoot : MonoBehaviour
 
     public void SetGunMode(Mode mode)
     {
+        SetGunMode(mode, false);
+    }
+
+    public void SetGunMode(Mode mode, bool muteAudio)
+    {
+        if (!muteAudio)
+        {
+            PlayRandomizedPitchAudioClip(switchGunAudioSource);
+        }
         currentMode = mode;
         Debug.Log("Updating gun mode to " + mode.ToString());
     }
@@ -89,6 +96,10 @@ public class GunShoot : MonoBehaviour
     public void DisableGunMode(Mode mode)
     {
         disabledModes.Add(mode);
+    }
+    public void EnableGunMode(Mode mode)
+    {
+        disabledModes.Remove(mode);
     }
 
     private bool CanShoot()

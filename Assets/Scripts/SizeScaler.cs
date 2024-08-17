@@ -111,6 +111,7 @@ public class SizeScaler : MonoBehaviour
 
     private void CompleteSmoothScaling()
     {
+        Debug.Log("HIT");
         scaleIsChanging = false;
         scaleTimeElapsedPercentage = 1.0f;
         initialLocalScale = Vector3.zero;
