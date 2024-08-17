@@ -5,15 +5,20 @@ using UnityEngine;
 public class GunShoot : MonoBehaviour
 {
     Camera camera;
+
     public AudioSource fireAudioSource;
     public AudioSource switchGunAudioSource;
-
-    private enum Mode
+    public enum Mode
     {
         SizeScale,
         MovementSpeedScale
     }
     private Mode currentMode;
+
+    public Mode GetMode()
+    {
+        return currentMode;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -74,9 +79,12 @@ public class GunShoot : MonoBehaviour
         
         if (currentMode == Mode.SizeScale)
         {
-            Scaler hitScaler = hit.transform.gameObject.GetComponent<Scaler>();
-            Scaler meScaler = gameObject.transform.parent.gameObject.GetComponentInParent<Scaler>();
-            hitScaler.SwapTransformScaleMultiplier(meScaler);
+            SizeScaler hitScaler = hit.transform.gameObject.GetComponent<SizeScaler>();
+            if (hitScaler != null)
+            {
+                SizeScaler meScaler = gameObject.transform.parent.gameObject.GetComponentInParent<SizeScaler>();
+                hitScaler.SwapTransformScaleMultiplier(meScaler);
+            }
         } else if (currentMode == Mode.MovementSpeedScale)
         {
             MovementSpeedScaler hitScaler = hit.transform.gameObject.GetComponent<MovementSpeedScaler>();

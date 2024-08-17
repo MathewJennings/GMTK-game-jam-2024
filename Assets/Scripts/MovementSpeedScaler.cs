@@ -7,6 +7,11 @@ public class MovementSpeedScaler : MonoBehaviour
     [SerializeField]
     private float multiplier = 1f;
 
+    public float getMultiplier()
+    {
+        return multiplier;
+    }
+
     public float PollMultipler()
     {
         float currentMultiplier = multiplier;

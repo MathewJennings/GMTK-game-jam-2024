@@ -23,7 +23,7 @@ public class DeathCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>() != null)
+        if (collision.gameObject.tag.Equals("Player"))
         {
             IEnumerator coroutine = EndCurrentLevel(deathAudio.clip.length);
             StartCoroutine(coroutine);
