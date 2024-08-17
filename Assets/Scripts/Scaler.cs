@@ -1,48 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Scaler : MonoBehaviour
 {
 
-    // This represents how much the GameObject's transform should be scaled
+    // How much the GameObject's transform should be scaled
     [SerializeField]
     private float transformScaleMultiplier = 1f;
+    // Should the X Scale be changed?
     [SerializeField]
     private bool scaleTransformX = false;
+    // Should the Y Scale be changed?
     [SerializeField]
     private bool scaleTransformY = false;
+    // How long it should take for the object to complete a change in scale
+    [SerializeField]
+    private float scaleTimeInSecs = 0.5f;
+
+    // True only while we are in the process of changing the scale
+    private bool scaleIsChanging = false;
+    // If a scale change is occurring, how far are we through it? 0-1 = 0-100%
+    private float scaleTimeElapsedPercentage = 0.0f;
+    // If a scale change is occurring, this is where we started
+    private Vector3 initialLocalScale = Vector3.zero;
+    // If a scale change is occurring, this is where we want to end up
+    private Vector3 targetLocalScale = Vector3.zero;
 
     void Start()
     {
     }
 
-    void Update()
+    public void SwapTransformScaleMultiplier(Scaler other)
     {
-        
+        float myMultiplier = transformScaleMultiplier;
+        UpdateTransformScale(other.transformScaleMultiplier);
+        other.UpdateTransformScale(myMultiplier);
     }
 
-    public float PollTransformScaleMultipler()
-    {
-        float currentTransformScaleMultiplier = transformScaleMultiplier;
-        return currentTransformScaleMultiplier;
-    }
-
-    public float StealTransformScaleMultipler()
-    {
-        float currentTransformScaleMultiplier = transformScaleMultiplier;
-        UpdateTransformScale(1f);
-        return currentTransformScaleMultiplier;
-    }
-
-    public void SwapTransformScaleMultiplier(Scaler source)
-    {
-        float currentTransformScaleMultiplier = transformScaleMultiplier;
-        UpdateTransformScale(source.PollTransformScaleMultipler());
-        source.UpdateTransformScale(currentTransformScaleMultiplier);
-    }
-
-    public void UpdateTransformScale(float newMultiplier)
+    private void UpdateTransformScale(float newMultiplier)
     {
         float newXScale = gameObject.transform.localScale.x;
         float newYScale = gameObject.transform.localScale.y;
@@ -56,6 +53,42 @@ public class Scaler : MonoBehaviour
             newYScale *= newMultiplier / transformScaleMultiplier;
         }
         transformScaleMultiplier = newMultiplier;
-        gameObject.transform.localScale = new Vector3(newXScale, newYScale, zScale);
+        scaleIsChanging = true;
+        StartSmoothScaling(newXScale, newYScale, zScale);
+    }
+
+    private void StartSmoothScaling(float targetX, float targetY, float targetZ)
+    {
+        scaleIsChanging = true;
+        scaleTimeElapsedPercentage = 0.0f;
+        initialLocalScale = gameObject.transform.localScale;
+        targetLocalScale = new Vector3(targetX, targetY, targetZ);
+    }
+
+    void Update()
+    {
+        if (scaleIsChanging)
+        {
+            UpdateScale();
+        }
+    }
+
+    private void UpdateScale()
+    {
+        scaleTimeElapsedPercentage += Time.deltaTime / scaleTimeInSecs;
+        gameObject.transform.localScale = Vector3.Slerp(initialLocalScale, targetLocalScale, scaleTimeElapsedPercentage);
+        // Consider checking scaleTimeElapsedPercentage >= 1.0f instead
+        if (gameObject.transform.localScale.Equals(targetLocalScale))
+        {
+            CompleteSmoothScaling();
+        }
+    }
+
+    private void CompleteSmoothScaling()
+    {
+        scaleIsChanging = false;
+        scaleTimeElapsedPercentage = 1.0f;
+        initialLocalScale = Vector3.zero;
+        targetLocalScale = Vector3.zero;
     }
 }
