@@ -10,6 +10,6 @@ public class TargetFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.transform.position + new Vector3(0, 1, -10);
+        transform.position = target.transform.position + new Vector3(0, 1, -15);
     }
 }

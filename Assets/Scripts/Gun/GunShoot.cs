@@ -8,6 +8,8 @@ public class GunShoot : MonoBehaviour
 
     public AudioSource fireAudioSource;
     public AudioSource switchGunAudioSource;
+    private LineRenderer lineRenderer;
+    private WaitForSeconds shotDuration = new WaitForSeconds(.13f);
     public enum Mode
     {
         SizeScale,
@@ -24,6 +26,8 @@ public class GunShoot : MonoBehaviour
     void Start()
     {
         camera = Camera.main;
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
     }
 
     // Update is called once per frame
@@ -46,10 +50,13 @@ public class GunShoot : MonoBehaviour
         // Offset the camera's z position.
         mousePos.z = camera.transform.position.z * -1;
         mousePos = camera.ScreenToWorldPoint(mousePos);
+        
         Debug.DrawRay(transform.position, mousePos - transform.position, Color.green);
 
         if (Input.GetMouseButtonDown(0))
         {
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, mousePos);
             PlayRandomizedPitchAudioClip(fireAudioSource);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position);
             ProcessHit(hit);
@@ -69,13 +76,23 @@ public class GunShoot : MonoBehaviour
         Debug.Log("Updating gun mode to " + mode.ToString());
     }
 
+    private IEnumerator ShotEffect()
+    {
+        lineRenderer.enabled = true;
+        yield return shotDuration;
+        lineRenderer.enabled = false;
+    }
+
     private void ProcessHit(RaycastHit2D hit)
     {
         if (!hit)
         {
+            StartCoroutine(ShotEffect());
             return;
         }
 
+        lineRenderer.SetPosition(1, hit.point);
+        StartCoroutine(ShotEffect());
         
         if (currentMode == Mode.SizeScale)
         {
