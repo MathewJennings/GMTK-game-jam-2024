@@ -54,12 +54,18 @@ public class GunRotate : MonoBehaviour
                 SizeScaler sizeScaler = player.GetComponent<SizeScaler>();
                 float sizeMult = sizeScaler.GetTransformScaleMultiplier();
                 text.SetText("Size\n" + sizeMult + "x");
+                text.color = new Color(0, 100, 255); // blue
             }
             else if (currentMode == GunShoot.Mode.MovementSpeedScale)
             {
                 MovementSpeedScaler movementSpeedScaler = player.GetComponent<MovementSpeedScaler>();
                 float speedMult = movementSpeedScaler.getMultiplier();
                 text.SetText("Speed\n" + speedMult + "x");
+                text.color = new Color(255, 90, 0); // orange
+            } else
+            {
+                // Invalid mode?
+                text.SetText("");
             }
         }
     }
