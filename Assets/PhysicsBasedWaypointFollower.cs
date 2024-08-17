@@ -15,7 +15,7 @@ public class PhysicsBasedWaypointFollower : MonoBehaviour
         Vector2 distance = (Vector2)destination - (Vector2)transform.position;
         float speedScaler = GetComponent<MovementSpeedScaler>().PollMultipler();
         gameObject.GetComponent<Rigidbody2D>().velocity = distance.normalized * velocity * speedScaler; 
-        if (distance.magnitude <= 0.05)
+        if (distance.magnitude <= 0.1)
         {
             nextWaypointIndex++;
         }
