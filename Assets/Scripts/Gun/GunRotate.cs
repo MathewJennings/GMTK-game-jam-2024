@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GunRotate : MonoBehaviour
 {
@@ -16,10 +17,13 @@ public class GunRotate : MonoBehaviour
     [SerializeField]
     private TMP_Text text;
 
+    private Vector3 canvasScale;
+
     // Start is called before the first frame update
     void Start()
     {
         camera = Camera.main;
+        canvasScale = canvas.transform.localScale;
     }
 
     // Update is called once per frame
@@ -33,8 +37,13 @@ public class GunRotate : MonoBehaviour
         transform.right = mousePos - transform.position;
 
         // Position the canvas above the tip of the gun and rotate it rightside up.
-        canvas.transform.position = tip.transform.position + new Vector3(0f, 0.5f, 0f);
+        canvas.transform.position = tip.transform.position + new Vector3(0f, 0.7f, 0f);
         canvas.transform.rotation = camera.transform.rotation;
+
+        // Keep canvas at fixed scale
+        Vector3 parentScale = transform.parent.localScale;
+        Vector3 newCanvasScale = new Vector3(canvasScale.x / parentScale.x, canvasScale.y / parentScale.y, canvasScale.z / parentScale.z);
+        canvas.transform.localScale = newCanvasScale;
 
         // Set the text for the canvas
         GunShoot.Mode currentMode = tip.GetComponent<GunShoot>().GetMode();
