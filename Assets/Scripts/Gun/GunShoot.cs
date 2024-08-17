@@ -17,7 +17,7 @@ public class GunShoot : MonoBehaviour
         MovementSpeedScale
     }
     private Mode currentMode;
-    private List<Mode> disabledModes;
+    private List<Mode> disabledModes = new List<Mode>();
     public Mode GetMode()
     {
         return currentMode;
@@ -27,7 +27,7 @@ public class GunShoot : MonoBehaviour
 
     private void Awake()
     {
-        disabledModes = new List<Mode>();
+        
     }
     void Start()
     {
@@ -42,7 +42,7 @@ public class GunShoot : MonoBehaviour
         // Set Gun Mode
         if (Input.GetKeyDown(KeyCode.Alpha1) && !disabledModes.Contains(Mode.SizeScale))
         {
-            PlayRandomizedPitchAudioClip(switchGunAudioSource);
+                PlayRandomizedPitchAudioClip(switchGunAudioSource);
             SetGunMode(Mode.SizeScale);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && !disabledModes.Contains(Mode.MovementSpeedScale))
