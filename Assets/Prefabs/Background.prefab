@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6617602700709891623}
   - component: {fileID: 142515830858299963}
-  - component: {fileID: 5298307067765385877}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -27,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 8896657493218061420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.2, y: 0.8, z: -0.10357398}
-  m_LocalScale: {x: 35, y: 35, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10000}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: ddd6a842269cb4319b21321cbcd68f0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ac3d18fbb36745fa871debf309d2468, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,17 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5298307067765385877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8896657493218061420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b78cf89be6194a17b6a6ff10c7b8497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followTarget: {fileID: 0}
-  offsetFromFollowTarget: {x: 0, y: 0, z: 10}
