@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Scaler : MonoBehaviour
+public class SizeScaler : MonoBehaviour
 {
 
     // How much the GameObject's transform should be scaled
@@ -32,7 +32,12 @@ public class Scaler : MonoBehaviour
     {
     }
 
-    public void SwapTransformScaleMultiplier(Scaler other)
+    public float GetTransformScaleMultiplier()
+    {
+        return transformScaleMultiplier;
+    }
+
+    public void SwapTransformScaleMultiplier(SizeScaler other)
     {
         float myMultiplier = transformScaleMultiplier;
         UpdateTransformScale(other.transformScaleMultiplier);
