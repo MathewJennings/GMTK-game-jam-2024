@@ -56,9 +56,15 @@ MonoBehaviour:
   - InitialScene8
   - InitialScene9
   - InitialScene10
-  levelNamesWhereGunShouldBeDisabled:
+  audioSource: {fileID: 6209180989020845273}
+  levelNamesWhereSizeGunShouldBeDisabled:
   - InitialScene1
   - InitialScene2
+  levelNamesWhereSpeedGunShouldBeDisabled:
+  - InitialScene1
+  - InitialScene2
+  - InitialScene2a
+  - InitialScene3
 --- !u!82 &6209180989020845273
 AudioSource:
   m_ObjectHideFlags: 0
@@ -70,7 +76,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: afe39638835384249a4b307b4b481232, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
