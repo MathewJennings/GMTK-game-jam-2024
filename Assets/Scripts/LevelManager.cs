@@ -10,6 +10,9 @@ public class LevelManager : MonoBehaviour
     private List<string> levelNames;
 
     [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
     private List<string> levelNamesWhereSizeGunShouldBeDisabled;
 
     [SerializeField]
@@ -18,10 +21,12 @@ public class LevelManager : MonoBehaviour
     // Singleton LevelManager
     private static LevelManager instance;
 
+
     private void Awake()
     {
         if (instance == null)
         {
+            audioSource.Play();
             instance = this;
             DontDestroyOnLoad(this);
         }
