@@ -14,9 +14,10 @@ public class Movability : MonoBehaviour
         if (isMovable)
         {
             body.constraints = RigidbodyConstraints2D.None;
-        } else
+        }
+        else
         {
-            body.constraints = RigidbodyConstraints2D.FreezeAll;
+            body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
     }
 
