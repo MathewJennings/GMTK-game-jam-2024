@@ -28,15 +28,47 @@ public class LevelManager : MonoBehaviour
         {
             audioSource.Play();
             instance = this;
+            DisableGuns();
             DontDestroyOnLoad(this);
         }
         else if (instance != this)
         {
+            DisableGuns();
             Destroy(this);
         }
     }
 
     private void Start()
+    {
+        
+    }
+
+    public void LoadNextLevel()
+    {
+        int currentLevelIndex = instance.levelNames.IndexOf(SceneManager.GetActiveScene().name);
+        if (currentLevelIndex == instance.levelNames.Count - 1)
+        {
+            SceneManager.LoadScene("TheEnd");
+        }
+        else
+        {
+            SceneManager.LoadScene(instance.levelNames[++currentLevelIndex]);
+        }
+    }
+
+    public void PlayerDied()
+    {
+        // Decoupled from resetting the level because we might want to
+        // go back later and show a menu instead of resetting
+        ResetCurrentLevel();
+    }
+
+    public void ResetCurrentLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void DisableGuns()
     {
         bool shouldSizeGunBeDisabled = instance.levelNamesWhereSizeGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name);
         bool shouldSpeedGunBeDisabled = instance.levelNamesWhereSpeedGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name);
@@ -68,30 +100,5 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void LoadNextLevel()
-    {
-        int currentLevelIndex = instance.levelNames.IndexOf(SceneManager.GetActiveScene().name);
-        if (currentLevelIndex == instance.levelNames.Count - 1)
-        {
-            SceneManager.LoadScene("TheEnd");
-        }
-        else
-        {
-            SceneManager.LoadScene(instance.levelNames[++currentLevelIndex]);
-        }
-    }
-
-    public void PlayerDied()
-    {
-        // Decoupled from resetting the level because we might want to
-        // go back later and show a menu instead of resetting
-        ResetCurrentLevel();
-    }
-
-    public void ResetCurrentLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
