@@ -21,7 +21,10 @@ public class FinishLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        levelManager.LoadNextLevel();
-        Debug.Log("Trigger Entered");
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
+        {
+            levelManager.LoadNextLevel();
+            Debug.Log("Trigger Entered");
+        }
     }
 }
