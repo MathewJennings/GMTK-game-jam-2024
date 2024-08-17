@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9ff09efa40f439ab1f41bbc9412dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 7734274430751740582}
   spriteRenderer: {fileID: 3555033597433916276}
 --- !u!1001 &1119891505517124741
 PrefabInstance:
@@ -236,6 +235,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5931879865097723717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6762403515280278464, guid: 812e7517f8a5662428d35d7fdc895380, type: 3}
+  m_PrefabInstance: {fileID: 1119891505517124741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8146128677537669043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9117110539989943094, guid: 812e7517f8a5662428d35d7fdc895380, type: 3}
+  m_PrefabInstance: {fileID: 1119891505517124741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9092975529470458131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -285,6 +306,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7350447414024123644, guid: 5cd36013340caf64083d1494312b0423, type: 3}
+      propertyPath: indicatorButton
+      value: 
+      objectReference: {fileID: 8146128677537669043}
+    - target: {fileID: 7350447414024123644, guid: 5cd36013340caf64083d1494312b0423, type: 3}
       propertyPath: scaleTransformX
       value: 1
       objectReference: {fileID: 0}
@@ -304,6 +329,10 @@ PrefabInstance:
       propertyPath: multiplier
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9042200923302913325, guid: 5cd36013340caf64083d1494312b0423, type: 3}
+      propertyPath: indicatorButton
+      value: 
+      objectReference: {fileID: 5931879865097723717}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

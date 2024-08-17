@@ -43,6 +43,9 @@ public class MovementSpeedScaler : MonoBehaviour
     public void UpdateMultiplier(float newMultiplier)
     {
         multiplier = newMultiplier;
-        indicatorButton.gameObject.SetActive(IsScaled());
+        if (indicatorButton != null )
+        {
+            indicatorButton.gameObject.SetActive(IsScaled());
+        }
     }
 }
