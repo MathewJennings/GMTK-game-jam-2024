@@ -90,6 +90,10 @@ public class GunShoot : MonoBehaviour
     {
         disabledModes.Add(mode);
     }
+    public void EnableGunMode(Mode mode)
+    {
+        disabledModes.Remove(mode);
+    }
 
     private bool CanShoot()
     {
