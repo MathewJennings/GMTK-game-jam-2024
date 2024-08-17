@@ -10,7 +10,10 @@ public class LevelManager : MonoBehaviour
     private List<string> levelNames;
 
     [SerializeField]
-    private List<string> levelNamesWhereGunShouldBeDisabled;
+    private List<string> levelNamesWhereSizeGunShouldBeDisabled;
+
+    [SerializeField]
+    private List<string> levelNamesWhereSpeedGunShouldBeDisabled;
 
     // Singleton LevelManager
     private static LevelManager instance;
@@ -26,8 +29,13 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
 
-        if (instance.levelNamesWhereGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name))
+    private void Start()
+    {
+        bool shouldSizeGunBeDisabled = instance.levelNamesWhereSizeGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name);
+        bool shouldSpeedGunBeDisabled = instance.levelNamesWhereSpeedGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name);
+        if (shouldSizeGunBeDisabled || shouldSpeedGunBeDisabled)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             int numPlayerChildren = player.transform.childCount;
@@ -36,7 +44,22 @@ public class LevelManager : MonoBehaviour
                 GameObject playerChild = player.transform.GetChild(i).gameObject;
                 if (playerChild.tag.Equals("Gun"))
                 {
-                    playerChild.SetActive(false);
+                    if (shouldSizeGunBeDisabled && shouldSpeedGunBeDisabled)
+                    {
+                        playerChild.SetActive(false);
+                    }
+                    else if (shouldSizeGunBeDisabled)
+                    {
+                        GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
+                        gunShoot.SetGunMode(GunShoot.Mode.MovementSpeedScale);
+                        gunShoot.DisableGunMode(GunShoot.Mode.SizeScale);
+                    }
+                    else if (shouldSpeedGunBeDisabled)
+                    {
+                        GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
+                        gunShoot.SetGunMode(GunShoot.Mode.SizeScale);
+                        gunShoot.DisableGunMode(GunShoot.Mode.MovementSpeedScale);
+                    }
                 }
             }
         }

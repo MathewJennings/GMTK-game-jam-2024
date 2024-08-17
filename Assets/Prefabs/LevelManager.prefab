@@ -56,9 +56,14 @@ MonoBehaviour:
   - InitialScene8
   - InitialScene9
   - InitialScene10
-  levelNamesWhereGunShouldBeDisabled:
+  levelNamesWhereSizeGunShouldBeDisabled:
   - InitialScene1
   - InitialScene2
+  levelNamesWhereSpeedGunShouldBeDisabled:
+  - InitialScene1
+  - InitialScene2
+  - InitialScene2a
+  - InitialScene3
 --- !u!82 &6209180989020845273
 AudioSource:
   m_ObjectHideFlags: 0
