@@ -22,7 +22,10 @@ public class DeathCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("death collider trigger enter");
-        levelManager.PlayerDied();
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
+        {
+            Debug.Log("death collider trigger enter");
+            levelManager.PlayerDied();
+        }
     }
 }
