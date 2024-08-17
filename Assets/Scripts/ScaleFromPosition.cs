@@ -21,33 +21,41 @@ public class ScaleFromPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Vector2 transformationVector = new Vector2(0f, 0f);
         if (scaleFrom == ScaleFrom.Bottom)
         {
             float halfScale = transform.localScale.y / 2;
             transform.position = new Vector3(transform.position.x, transform.position.y - halfScale, transform.position.z);
-            sprite.transform.localPosition = new Vector3(0f, 0.5f, 0f);
-            transform.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0.5f);
+            transformationVector = new Vector2(0f, 0.5f);
         }
         if (scaleFrom == ScaleFrom.Top)
         {
             float halfScale = transform.localScale.y / 2;
             transform.position = new Vector3(transform.position.x, transform.position.y + halfScale, transform.position.z);
-            sprite.transform.localPosition = new Vector3(0f, -0.5f, 0f);
-            transform.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
+            transformationVector = new Vector2(0f, -0.5f);
         }
         if (scaleFrom == ScaleFrom.Left)
         {
             float halfScale = transform.localScale.x / 2;
             transform.position = new Vector3(transform.position.x - halfScale, transform.position.y, transform.position.z);
-            sprite.transform.localPosition = new Vector3(0.5f, 0f, 0f);
-            transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f, 0f);
+            transformationVector = new Vector2(0.5f, 0f);
         }
         if (scaleFrom == ScaleFrom.Right)
         {
             float halfScale = transform.localScale.x / 2;
             transform.position = new Vector3(transform.position.x + halfScale, transform.position.y, transform.position.z);
-            sprite.transform.localPosition = new Vector3(-0.5f, 0f, 0f);
-            transform.GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0f);
+            transformationVector = new Vector2(-0.5f, 0f);
+        }
+        transform.GetComponent<BoxCollider2D>().offset += transformationVector;
+        updateChildren(transformationVector);
+    }
+
+    private void updateChildren(Vector2 childTransformationVector)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            child.transform.localPosition += new Vector3(childTransformationVector.x, childTransformationVector.y, 0f);
         }
     }
 }
