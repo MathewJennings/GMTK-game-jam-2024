@@ -51,7 +51,8 @@ public class GunShoot : MonoBehaviour
             SetGunMode(Mode.MovementSpeedScale);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        // Shoot
+        if (Input.GetMouseButtonDown(0) && CanShoot())
         {
             // Get world position of mouse.
             Vector3 mousePos = Input.mousePosition;
@@ -89,6 +90,22 @@ public class GunShoot : MonoBehaviour
     {
         disabledModes.Add(mode);
     }
+
+    private bool CanShoot()
+    {
+        GameObject player = transform.parent.parent.gameObject;
+        if (!player || player.tag != "Player") return false;
+
+        bool scaleIsChanging = player.GetComponent<SizeScaler>().GetScaleIsChanging();
+        Debug.Log(scaleIsChanging);
+        if (scaleIsChanging)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     private void ProcessHit(RaycastHit2D hit)
     {
         if (!hit)
