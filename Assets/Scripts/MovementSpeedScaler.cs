@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovementSpeedScaler : MonoBehaviour
 {
     [SerializeField]
     private float multiplier = 1f;
+    [SerializeField]
+    private Button indicatorButton;
 
     public float getMultiplier()
     {
         return multiplier;
+    }
+
+    public bool IsScaled()
+    {
+        return 1f != multiplier;
     }
 
     public float PollMultipler()
@@ -35,5 +43,9 @@ public class MovementSpeedScaler : MonoBehaviour
     public void UpdateMultiplier(float newMultiplier)
     {
         multiplier = newMultiplier;
+        if (indicatorButton != null )
+        {
+            indicatorButton.gameObject.SetActive(IsScaled());
+        }
     }
 }
