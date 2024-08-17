@@ -6,6 +6,7 @@ public class DeathCollider : MonoBehaviour
 {
 
     private LevelManager levelManager;
+    public AudioSource deathAudio;
 
     private void Awake()
     {
@@ -24,8 +25,18 @@ public class DeathCollider : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            Debug.Log("death collider trigger enter");
-            levelManager.PlayerDied();
+            IEnumerator coroutine = EndCurrentLevel(deathAudio.clip.length);
+            StartCoroutine(coroutine);
+
         }
+    }
+
+    private IEnumerator EndCurrentLevel(float waitTime)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerController>().enabled = false;
+        deathAudio.PlayOneShot(deathAudio.clip);
+        yield return new WaitForSeconds(waitTime);
+        levelManager.PlayerDied();
     }
 }

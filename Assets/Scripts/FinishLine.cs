@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour
 {
-
+    public AudioSource audioSource;
     private LevelManager levelManager;
 
     private void Start()
@@ -23,8 +23,16 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            levelManager.LoadNextLevel();
-            Debug.Log("Trigger Entered");
+            IEnumerator coroutine = EndCurrentLevel(audioSource.clip.length);
+            StartCoroutine(coroutine);
         }
+    }
+    private IEnumerator EndCurrentLevel(float waitTime)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerController>().enabled = false;
+        audioSource.PlayOneShot(audioSource.clip, 1f);
+        yield return new WaitForSeconds(waitTime);
+        levelManager.LoadNextLevel();
     }
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class GunShoot : MonoBehaviour
 {
     Camera camera;
-    
+    public AudioSource fireAudioSource;
+    public AudioSource switchGunAudioSource;
+
     private enum Mode
     {
         SizeScale,
@@ -25,9 +27,12 @@ public class GunShoot : MonoBehaviour
         // Set Gun Mode
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            PlayRandomizedPitchAudioClip(switchGunAudioSource);
             SetGunMode(Mode.SizeScale);
-        } else if (Input.GetKeyDown(KeyCode.Alpha2))
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            PlayRandomizedPitchAudioClip(switchGunAudioSource);
             SetGunMode(Mode.MovementSpeedScale);
         }
 
@@ -40,9 +45,17 @@ public class GunShoot : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            PlayRandomizedPitchAudioClip(fireAudioSource);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position);
             ProcessHit(hit);
         }
+    }
+
+    private void PlayRandomizedPitchAudioClip(AudioSource audioSource)
+    {
+        audioSource.pitch = Random.Range(0.6f, 1f);
+        audioSource.volume = Random.Range(0.6f, 1f);
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     private void SetGunMode(Mode mode)
@@ -68,6 +81,11 @@ public class GunShoot : MonoBehaviour
         {
             MovementSpeedScaler hitScaler = hit.transform.gameObject.GetComponent<MovementSpeedScaler>();
             MovementSpeedScaler meScaler = gameObject.transform.parent.gameObject.GetComponentInParent<MovementSpeedScaler>();
+            //Don't swap multiplier if the target is not valid
+            if(meScaler == null || hitScaler == null)
+            {
+                return;
+            }
             hitScaler.SwapMultiplier(meScaler);
         } else
         {

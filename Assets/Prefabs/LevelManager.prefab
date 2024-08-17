@@ -50,6 +50,11 @@ MonoBehaviour:
   - InitialScene3
   - InitialScene4
   - InitialScene5
+  - InitialScene6
+  - InitialScene7
+  - InitialScene8
+  - InitialScene9
+  - InitialScene10
   levelNamesWhereGunShouldBeDisabled:
   - InitialScene1
   - InitialScene2

@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private float timeLastTouchedGround = -10f;
     private float coyoteTimeAmount = .2f;
 
+    public AudioSource jumpAudioSource;
+
     //[SerializeField]
     //private float gravityScale = 10;
     //[SerializeField]
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
             {
                 isTouchingGround = false;
                 timeLastTouchedGround = -10f;
+                PlayRandomizedJumpSound();
                 rb.AddForce(Vector2.up * jumpMult, ForceMode2D.Impulse);
             }
         }
@@ -85,5 +88,12 @@ public class PlayerController : MonoBehaviour
         {
             isTouchingGround = true;
         }
+    }
+
+    private void PlayRandomizedJumpSound()
+    {
+        jumpAudioSource.pitch = Random.Range(0.6f, 1f);
+        jumpAudioSource.volume = Random.Range(0.6f, 1f);
+        jumpAudioSource.PlayOneShot(jumpAudioSource.clip);
     }
 }
