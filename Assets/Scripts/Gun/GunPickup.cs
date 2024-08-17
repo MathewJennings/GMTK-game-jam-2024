@@ -41,7 +41,7 @@ public class GunPickup : MonoBehaviour
                 }
             }
 
-            if (modeToEnable == GunShoot.Mode.MovementSpeedScale)
+            if (instructionsCanvas)
             {
                 instructionsCanvas.gameObject.SetActive(true);
             }
