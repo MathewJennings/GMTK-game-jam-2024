@@ -25,7 +25,9 @@ public class GunShoot : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position);
             if (hit) {
-                Debug.Log("Gun hit: " + hit.transform.name);
+                Scaler hitScaler = hit.transform.gameObject.GetComponent<Scaler>();
+                Scaler meScaler = gameObject.transform.parent.gameObject.GetComponentInParent<Scaler>();
+                hitScaler.SwapTransformScaleMultiplier(meScaler);
             }
         }
     }

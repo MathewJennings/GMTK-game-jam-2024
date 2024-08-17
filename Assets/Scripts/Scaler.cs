@@ -15,7 +15,6 @@ public class Scaler : MonoBehaviour
 
     void Start()
     {
-        UpdateTransformScale();
     }
 
     void Update()
@@ -23,33 +22,40 @@ public class Scaler : MonoBehaviour
         
     }
 
-    public float StealTransformScaleMultipler()
+    public float PollTransformScaleMultipler()
     {
         float currentTransformScaleMultiplier = transformScaleMultiplier;
-        transformScaleMultiplier = 1f;
-        UpdateTransformScale();
         return currentTransformScaleMultiplier;
     }
 
-    public void SetTransformScaleMultiplier(float multiplier)
+    public float StealTransformScaleMultipler()
     {
-        transformScaleMultiplier = multiplier;
-        UpdateTransformScale();
+        float currentTransformScaleMultiplier = transformScaleMultiplier;
+        UpdateTransformScale(1f);
+        return currentTransformScaleMultiplier;
     }
 
-    private void UpdateTransformScale()
+    public void SwapTransformScaleMultiplier(Scaler source)
+    {
+        float currentTransformScaleMultiplier = transformScaleMultiplier;
+        UpdateTransformScale(source.PollTransformScaleMultipler());
+        source.UpdateTransformScale(currentTransformScaleMultiplier);
+    }
+
+    public void UpdateTransformScale(float newMultiplier)
     {
         float newXScale = gameObject.transform.localScale.x;
         float newYScale = gameObject.transform.localScale.y;
         float zScale = gameObject.transform.localScale.z;
         if (scaleTransformX)
         {
-            newXScale *= transformScaleMultiplier;
+            newXScale *= newMultiplier / transformScaleMultiplier;
         }
         if (scaleTransformY)
         {
-            newYScale *= transformScaleMultiplier;
+            newYScale *= newMultiplier / transformScaleMultiplier;
         }
+        transformScaleMultiplier = newMultiplier;
         gameObject.transform.localScale = new Vector3(newXScale, newYScale, zScale);
     }
 }
