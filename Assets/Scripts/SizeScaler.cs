@@ -37,6 +37,11 @@ public class SizeScaler : MonoBehaviour
         return transformScaleMultiplier;
     }
 
+    public bool DoesScale()
+    {
+        return scaleTransformX || scaleTransformY;
+    }
+
     public void SwapTransformScaleMultiplier(SizeScaler other)
     {
         float myMultiplier = transformScaleMultiplier;

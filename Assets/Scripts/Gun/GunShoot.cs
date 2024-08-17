@@ -80,7 +80,7 @@ public class GunShoot : MonoBehaviour
         if (currentMode == Mode.SizeScale)
         {
             SizeScaler hitScaler = hit.transform.gameObject.GetComponent<SizeScaler>();
-            if (hitScaler != null)
+            if (hitScaler != null && hitScaler.DoesScale())
             {
                 SizeScaler meScaler = gameObject.transform.parent.gameObject.GetComponentInParent<SizeScaler>();
                 hitScaler.SwapTransformScaleMultiplier(meScaler);
