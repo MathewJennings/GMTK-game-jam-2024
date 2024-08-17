@@ -14,6 +14,7 @@ public class ScaleFromPosition : MonoBehaviour
         Top,
         Left,
         Right,
+        BottomRight
     }
     [SerializeField]
     private ScaleFrom scaleFrom;
@@ -21,6 +22,10 @@ public class ScaleFromPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(gameObject.name.Equals("Crate (2)"))
+        {
+            Debug.Log("d");
+        }
         Vector2 transformationVector = new Vector2(0f, 0f);
         if (scaleFrom == ScaleFrom.Bottom)
         {
@@ -45,6 +50,13 @@ public class ScaleFromPosition : MonoBehaviour
             float halfScale = transform.localScale.x / 2;
             transform.position = new Vector3(transform.position.x + halfScale, transform.position.y, transform.position.z);
             transformationVector = new Vector2(-0.5f, 0f);
+        }
+        if (scaleFrom == ScaleFrom.BottomRight)
+        {
+            float halfXScale = transform.localScale.x / 2;
+            float halfYScale = transform.localScale.y / 2;
+            transform.position = new Vector3(transform.position.x + halfXScale, transform.position.y - halfYScale, transform.position.z);
+            transformationVector = new Vector2(-0.5f, 0.5f);
         }
         transform.GetComponent<BoxCollider2D>().offset += transformationVector;
         updateChildren(transformationVector);

@@ -5,21 +5,24 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Matt Work Scene.unity
     guid: 6988c344c048247eeac05ea158c0ea56
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sam Work Scene.unity
     guid: 8b893a2153b6c8341b626ee267b3f4df
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Mat Work Scene.unity
     guid: 60399e420cab04d428acf206c1b121e1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Franklin Work Scene.unity
     guid: 749b739a58f6c5e42b49f96a758cd73f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Felix Work Scene.unity
     guid: a245c5bfa0b4b874bb6cafb5b603fa3a
+  - enabled: 1
+    path: Assets/Scenes/Levels/InitialScene1.unity
+    guid: 672496a92812d430e9e97cd94a9cad71
   - enabled: 1
     path: Assets/Scenes/Levels/Welcome.unity
     guid: 70399b2a073914c5da3b0fb7737f3d15
@@ -50,9 +53,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/InitialScene2.unity
     guid: 19f17352600014ac1a12b02d5b0d5d4a
-  - enabled: 1
-    path: Assets/Scenes/Levels/InitialScene1.unity
-    guid: 672496a92812d430e9e97cd94a9cad71
   - enabled: 1
     path: Assets/Scenes/Levels/TheEnd.unity
     guid: 7402e01d83b4946abb8e137e9b7c51c7
