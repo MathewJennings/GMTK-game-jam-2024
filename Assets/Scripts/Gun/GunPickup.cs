@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GunPickup : MonoBehaviour
@@ -7,6 +8,8 @@ public class GunPickup : MonoBehaviour
 
     [SerializeField]
     private GunShoot.Mode modeToEnable;
+    [SerializeField]
+    private Transform instructionsCanvas;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,11 @@ public class GunPickup : MonoBehaviour
                     gunShoot.SetGunMode(modeToEnable);
                     this.gameObject.SetActive(false);
                 }
+            }
+
+            if (modeToEnable == GunShoot.Mode.MovementSpeedScale)
+            {
+                instructionsCanvas.gameObject.SetActive(true);
             }
         }
     }
