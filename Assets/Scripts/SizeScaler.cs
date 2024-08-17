@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class SizeScaler : MonoBehaviour
 {
-
     // How much the GameObject's transform should be scaled
     [SerializeField]
     private float transformScaleMultiplier = 1f;
@@ -18,6 +18,8 @@ public class SizeScaler : MonoBehaviour
     // How long it should take for the object to complete a change in scale
     [SerializeField]
     private float scaleTimeInSecs = 0.5f;
+    [SerializeField]
+    private Button indicatorButton;
 
     // True only while we are in the process of changing the scale
     private bool scaleIsChanging = false;
@@ -47,6 +49,11 @@ public class SizeScaler : MonoBehaviour
         return scaleTransformX || scaleTransformY;
     }
 
+    public bool IsScaled()
+    {
+        return 1f != transformScaleMultiplier;
+    }
+
     public void SwapTransformScaleMultiplier(SizeScaler other)
     {
         float myMultiplier = transformScaleMultiplier;
@@ -68,6 +75,10 @@ public class SizeScaler : MonoBehaviour
             newYScale *= newMultiplier / transformScaleMultiplier;
         }
         transformScaleMultiplier = newMultiplier;
+        if (indicatorButton != null)
+        {
+            indicatorButton.gameObject.SetActive(IsScaled());
+        }
         scaleIsChanging = true;
         StartSmoothScaling(newXScale, newYScale, zScale);
     }
