@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+
+    [SerializeField]
+    private List<string> levelNames;
+
+    [SerializeField]
+    private List<string> levelNamesWhereGunShouldBeDisabled;
+
+    // Singleton LevelManager
     private static LevelManager instance;
-
-    public List<string> levelNames;
-    public string finalSceneName;
-
-    public int currentLevelIndex;
 
     private void Awake()
     {
@@ -23,18 +26,32 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        if (instance.levelNamesWhereGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            int numPlayerChildren = player.transform.childCount;
+            for (int i = 0; i < numPlayerChildren; i++)
+            {
+                GameObject playerChild = player.transform.GetChild(i).gameObject;
+                if (playerChild.tag.Equals("Gun"))
+                {
+                    playerChild.SetActive(false);
+                }
+            }
+        }
     }
 
     public void LoadNextLevel()
     {
-        if (instance.currentLevelIndex == instance.levelNames.Count - 1)
+        int currentLevelIndex = instance.levelNames.IndexOf(SceneManager.GetActiveScene().name);
+        if (currentLevelIndex == instance.levelNames.Count - 1)
         {
             SceneManager.LoadScene("TheEnd");
         }
         else
         {
-            instance.currentLevelIndex++;
-            SceneManager.LoadScene(instance.levelNames[instance.currentLevelIndex]);
+            SceneManager.LoadScene(instance.levelNames[++currentLevelIndex]);
         }
     }
 
@@ -47,7 +64,6 @@ public class LevelManager : MonoBehaviour
 
     public void ResetCurrentLevel()
     {
-        Debug.Log("Retrying" + instance.levelNames[instance.currentLevelIndex].ToString());
-        SceneManager.LoadScene(instance.levelNames[instance.currentLevelIndex]);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

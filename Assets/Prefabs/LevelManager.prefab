@@ -50,4 +50,6 @@ MonoBehaviour:
   - InitialScene3
   - InitialScene4
   - InitialScene5
-  finalSceneName: TheEnd
+  levelNamesWhereGunShouldBeDisabled:
+  - InitialScene1
+  - InitialScene2
