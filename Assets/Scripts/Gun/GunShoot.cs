@@ -7,6 +7,7 @@ public class GunShoot : MonoBehaviour
     Camera camera;
 
     public AudioSource fireAudioSource;
+    public AudioSource failFireAudioSource;
     public AudioSource switchGunAudioSource;
     private LineRenderer lineRenderer;
     private WaitForSeconds shotDuration = new WaitForSeconds(.13f);
@@ -16,13 +17,18 @@ public class GunShoot : MonoBehaviour
         MovementSpeedScale
     }
     private Mode currentMode;
-
+    private List<Mode> disabledModes;
     public Mode GetMode()
     {
         return currentMode;
     }
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        disabledModes = new List<Mode>();
+    }
     void Start()
     {
         camera = Camera.main;
@@ -34,43 +40,39 @@ public class GunShoot : MonoBehaviour
     void Update()
     {
         // Set Gun Mode
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !disabledModes.Contains(Mode.SizeScale))
         {
             PlayRandomizedPitchAudioClip(switchGunAudioSource);
             SetGunMode(Mode.SizeScale);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && !disabledModes.Contains(Mode.MovementSpeedScale))
         {
             PlayRandomizedPitchAudioClip(switchGunAudioSource);
             SetGunMode(Mode.MovementSpeedScale);
         }
 
-        // handle rotation
-        Vector3 mousePos = Input.mousePosition;
-        // Offset the camera's z position.
-        mousePos.z = camera.transform.position.z * -1;
-        mousePos = camera.ScreenToWorldPoint(mousePos);
-        
-        Debug.DrawRay(transform.position, mousePos - transform.position, Color.green);
-
         if (Input.GetMouseButtonDown(0))
         {
+            // Get world position of mouse.
+            Vector3 mousePos = Input.mousePosition;
+            // Offset the camera's z position.
+            mousePos.z = camera.transform.position.z * -1;
+            mousePos = camera.ScreenToWorldPoint(mousePos);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position);
+
+            // If the hit is self, we clicked between the tip of the gun and ourselves.
+            // Try again with a raycast going in the other direction.
+            if (hit && hit.transform.tag == "Player")
+            {
+                hit = Physics2D.Raycast(transform.position, transform.position - mousePos);
+            }
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, mousePos);
-            PlayRandomizedPitchAudioClip(fireAudioSource);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position);
             ProcessHit(hit);
         }
     }
 
-    private void PlayRandomizedPitchAudioClip(AudioSource audioSource)
-    {
-        audioSource.pitch = Random.Range(0.6f, 1f);
-        audioSource.volume = Random.Range(0.6f, 1f);
-        audioSource.PlayOneShot(audioSource.clip);
-    }
-
-    private void SetGunMode(Mode mode)
+    public void SetGunMode(Mode mode)
     {
         currentMode = mode;
         Debug.Log("Updating gun mode to " + mode.ToString());
@@ -83,24 +85,42 @@ public class GunShoot : MonoBehaviour
         lineRenderer.enabled = false;
     }
 
+    public void DisableGunMode(Mode mode)
+    {
+        disabledModes.Add(mode);
+    }
     private void ProcessHit(RaycastHit2D hit)
     {
         if (!hit)
         {
             StartCoroutine(ShotEffect());
+            PlayRandomizedPitchAudioClip(failFireAudioSource);
             return;
         }
 
         lineRenderer.SetPosition(1, hit.point);
         StartCoroutine(ShotEffect());
-        
+
         if (currentMode == Mode.SizeScale)
         {
             SizeScaler hitScaler = hit.transform.gameObject.GetComponent<SizeScaler>();
             if (hitScaler != null && hitScaler.DoesScale())
             {
                 SizeScaler meScaler = gameObject.transform.parent.gameObject.GetComponentInParent<SizeScaler>();
-                hitScaler.SwapTransformScaleMultiplier(meScaler);
+                //if the scales are the same, don't bother swapping
+                if(meScaler.GetTransformScaleMultiplier() == hitScaler.GetTransformScaleMultiplier())
+                {
+                    PlayRandomizedPitchAudioClip(failFireAudioSource);
+                }
+                else
+                {
+                    hitScaler.SwapTransformScaleMultiplier(meScaler);
+                    PlayRandomizedPitchAudioClip(fireAudioSource);  
+                }
+            }
+            else
+            {
+                PlayRandomizedPitchAudioClip(failFireAudioSource);
             }
         } else if (currentMode == Mode.MovementSpeedScale)
         {
@@ -109,13 +129,32 @@ public class GunShoot : MonoBehaviour
             //Don't swap multiplier if the target is not valid
             if(meScaler == null || hitScaler == null)
             {
+                PlayRandomizedPitchAudioClip(failFireAudioSource);
                 return;
             }
-            hitScaler.SwapMultiplier(meScaler);
+            else
+            {
+                PlayRandomizedPitchAudioClip(fireAudioSource);
+            }
+            //Don't swap multiplier if the scales are the same
+            if(meScaler.getMultiplier() == hitScaler.getMultiplier())
+            {
+                PlayRandomizedPitchAudioClip(failFireAudioSource);
+            }
+            else
+            {
+                hitScaler.SwapMultiplier(meScaler);
+            }
         } else
         {
             Debug.LogError("Current gun mode " + currentMode.ToString() + " not handled");
         }
-        
+
+    }
+    private void PlayRandomizedPitchAudioClip(AudioSource audioSource)
+    {
+        audioSource.pitch = Random.Range(0.6f, 1f);
+        audioSource.volume = Random.Range(0.6f, 1f);
+        audioSource.PlayOneShot(audioSource.clip);
     }
 }
