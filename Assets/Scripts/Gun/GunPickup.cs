@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GunPickup : MonoBehaviour
 {
+
+    [SerializeField]
+    private GunShoot.Mode modeToEnable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +32,8 @@ public class GunPickup : MonoBehaviour
                 {
                     playerChild.SetActive(true);
                     GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
-                    gunShoot.EnableGunMode(GunShoot.Mode.SizeScale);
+                    gunShoot.EnableGunMode(modeToEnable);
+                    gunShoot.SetGunMode(modeToEnable);
                     this.gameObject.SetActive(false);
                 }
             }

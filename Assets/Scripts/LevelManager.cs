@@ -91,13 +91,13 @@ public class LevelManager : MonoBehaviour
                     else if (shouldSizeGunBeDisabled)
                     {
                         GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
-                        gunShoot.SetGunMode(GunShoot.Mode.MovementSpeedScale);
+                        gunShoot.SetGunMode(GunShoot.Mode.MovementSpeedScale, true);
                         gunShoot.DisableGunMode(GunShoot.Mode.SizeScale);
                     }
                     else if (shouldSpeedGunBeDisabled)
                     {
                         GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
-                        gunShoot.SetGunMode(GunShoot.Mode.SizeScale);
+                        gunShoot.SetGunMode(GunShoot.Mode.SizeScale, true);
                         gunShoot.DisableGunMode(GunShoot.Mode.MovementSpeedScale);
                     }
                 }

@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7378073673550576675, guid: 812e7517f8a5662428d35d7fdc895380, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6710268357414716610, guid: 812e7517f8a5662428d35d7fdc895380, type: 3}
     m_RemovedGameObjects:
@@ -97,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cc4c2e068de4f4b87162cabaf2267e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeToEnable: 0
 --- !u!61 &4336729889304697988
 BoxCollider2D:
   m_ObjectHideFlags: 0
