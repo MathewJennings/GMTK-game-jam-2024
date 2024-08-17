@@ -11,6 +11,7 @@ public class PhysicsBasedWaypointFollower : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(waypoints.Count == 0) {  return; }
         Vector2 destination = GetNextWaypoint().position;
         Vector2 distance = (Vector2)destination - (Vector2)transform.position;
         float speedScaler = GetComponent<MovementSpeedScaler>().PollMultipler();
