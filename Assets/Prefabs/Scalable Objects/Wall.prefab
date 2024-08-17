@@ -152,14 +152,14 @@ PrefabInstance:
       addedObject: {fileID: 5714660739616019929}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7500510277427357975, guid: 5cd36013340caf64083d1494312b0423, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 9006561099813032767}
+    - targetCorrespondingSourceObject: {fileID: 7500510277427357975, guid: 5cd36013340caf64083d1494312b0423, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3363177701208749636}
     - targetCorrespondingSourceObject: {fileID: 7500510277427357975, guid: 5cd36013340caf64083d1494312b0423, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8421859012277384816}
-    - targetCorrespondingSourceObject: {fileID: 7500510277427357975, guid: 5cd36013340caf64083d1494312b0423, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9006561099813032767}
   m_SourcePrefab: {fileID: 100100000, guid: 5cd36013340caf64083d1494312b0423, type: 3}
 --- !u!4 &4277152105549109892 stripped
 Transform:
@@ -171,6 +171,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7500510277427357975, guid: 5cd36013340caf64083d1494312b0423, type: 3}
   m_PrefabInstance: {fileID: 1665950900843651877}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9006561099813032767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9154005906256448050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392eb40d212798f42bc98f955818a022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 4533798588139541947}
+  scaleFrom: 0
 --- !u!50 &3363177701208749636
 Rigidbody2D:
   serializedVersion: 4
@@ -243,17 +257,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &9006561099813032767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9154005906256448050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 392eb40d212798f42bc98f955818a022, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 4533798588139541947}
-  scaleFromBottom: 0
