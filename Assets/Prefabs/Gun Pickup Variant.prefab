@@ -24,6 +24,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3913644313911005106, guid: 812e7517f8a5662428d35d7fdc895380, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913644313911005106, guid: 812e7517f8a5662428d35d7fdc895380, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4112436451446776645, guid: 812e7517f8a5662428d35d7fdc895380, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
