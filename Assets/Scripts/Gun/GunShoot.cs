@@ -7,6 +7,7 @@ public class GunShoot : MonoBehaviour
     Camera camera;
 
     public AudioSource fireAudioSource;
+    public AudioSource failFireAudioSource;
     public AudioSource switchGunAudioSource;
     public enum Mode
     {
@@ -48,8 +49,6 @@ public class GunShoot : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            PlayRandomizedPitchAudioClip(fireAudioSource);
-
             // Get world position of mouse.
             Vector3 mousePos = Input.mousePosition;
             // Offset the camera's z position.
@@ -57,7 +56,6 @@ public class GunShoot : MonoBehaviour
             mousePos = camera.ScreenToWorldPoint(mousePos);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position);
 
-            Debug.Log(hit.transform.tag);
             // If the hit is self, we clicked between the tip of the gun and ourselves.
             // Try again with a raycast going in the other direction.
             if (hit && hit.transform.tag == "Player")
@@ -66,13 +64,6 @@ public class GunShoot : MonoBehaviour
             }
             ProcessHit(hit);
         }
-    }
-
-    private void PlayRandomizedPitchAudioClip(AudioSource audioSource)
-    {
-        audioSource.pitch = Random.Range(0.6f, 1f);
-        audioSource.volume = Random.Range(0.6f, 1f);
-        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public void SetGunMode(Mode mode)
@@ -89,6 +80,7 @@ public class GunShoot : MonoBehaviour
     {
         if (!hit)
         {
+            PlayRandomizedPitchAudioClip(failFireAudioSource);
             return;
         }
 
@@ -98,7 +90,20 @@ public class GunShoot : MonoBehaviour
             if (hitScaler != null && hitScaler.DoesScale())
             {
                 SizeScaler meScaler = gameObject.transform.parent.gameObject.GetComponentInParent<SizeScaler>();
-                hitScaler.SwapTransformScaleMultiplier(meScaler);
+                //if the scales are the same, don't bother swapping
+                if(meScaler.GetTransformScaleMultiplier() == hitScaler.GetTransformScaleMultiplier())
+                {
+                    PlayRandomizedPitchAudioClip(failFireAudioSource);
+                }
+                else
+                {
+                    hitScaler.SwapTransformScaleMultiplier(meScaler);
+                    PlayRandomizedPitchAudioClip(fireAudioSource);  
+                }
+            }
+            else
+            {
+                PlayRandomizedPitchAudioClip(failFireAudioSource);
             }
         } else if (currentMode == Mode.MovementSpeedScale)
         {
@@ -107,13 +112,32 @@ public class GunShoot : MonoBehaviour
             //Don't swap multiplier if the target is not valid
             if(meScaler == null || hitScaler == null)
             {
+                PlayRandomizedPitchAudioClip(failFireAudioSource);
                 return;
             }
-            hitScaler.SwapMultiplier(meScaler);
+            else
+            {
+                PlayRandomizedPitchAudioClip(fireAudioSource);
+            }
+            //Don't swap multiplier if the scales are the same
+            if(meScaler.getMultiplier() == hitScaler.getMultiplier())
+            {
+                PlayRandomizedPitchAudioClip(failFireAudioSource);
+            }
+            else
+            {
+                hitScaler.SwapMultiplier(meScaler);
+            }
         } else
         {
             Debug.LogError("Current gun mode " + currentMode.ToString() + " not handled");
         }
-        
+
+    }
+    private void PlayRandomizedPitchAudioClip(AudioSource audioSource)
+    {
+        audioSource.pitch = Random.Range(0.6f, 1f);
+        audioSource.volume = Random.Range(0.6f, 1f);
+        audioSource.PlayOneShot(audioSource.clip);
     }
 }
