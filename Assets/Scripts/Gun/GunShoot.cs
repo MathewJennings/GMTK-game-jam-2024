@@ -67,8 +67,8 @@ public class GunShoot : MonoBehaviour
             {
                 hit = Physics2D.Raycast(transform.position, transform.position - mousePos);
             }
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, mousePos);
+            lineRenderer.SetPosition(0, Vector2.zero);
+            lineRenderer.SetPosition(1, transform.InverseTransformPoint(mousePos));
             ProcessHit(hit);
         }
     }
@@ -115,7 +115,7 @@ public class GunShoot : MonoBehaviour
             return;
         }
 
-        lineRenderer.SetPosition(1, hit.point);
+        lineRenderer.SetPosition(1, transform.InverseTransformPoint(hit.point));
         StartCoroutine(ShotEffect());
 
         if (currentMode == Mode.SizeScale)
