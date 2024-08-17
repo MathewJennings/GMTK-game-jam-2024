@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private float moveMult = 10;
     [SerializeField]
     private float jumpMult = 50;
+    [SerializeField]
+    private MovementSpeedScaler speedScalar;
     //[SerializeField]
     //private float gravityScale = 10;
     //[SerializeField]
@@ -34,12 +36,12 @@ public class PlayerController : MonoBehaviour
         Vector2 currentYVelocity = gameObject.GetComponent<Rigidbody2D>().velocity * Vector2.up;
         if (Input.GetKey(KeyCode.A))
         {
-            rb.velocity = currentYVelocity + (Vector2.left * moveMult);
+            rb.velocity = currentYVelocity + (Vector2.left * moveMult * speedScalar.PollMultipler());
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity = currentYVelocity + (Vector2.right * moveMult);
+            rb.velocity = currentYVelocity + (Vector2.right * moveMult * speedScalar.PollMultipler());
         }
 
         if (Input.GetKey(KeyCode.Space))
