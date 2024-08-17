@@ -28,46 +28,19 @@ public class LevelManager : MonoBehaviour
         {
             audioSource.Play();
             instance = this;
+            DisableGuns();
             DontDestroyOnLoad(this);
         }
         else if (instance != this)
         {
+            DisableGuns();
             Destroy(this);
         }
     }
 
     private void Start()
     {
-        bool shouldSizeGunBeDisabled = instance.levelNamesWhereSizeGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name);
-        bool shouldSpeedGunBeDisabled = instance.levelNamesWhereSpeedGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name);
-        if (shouldSizeGunBeDisabled || shouldSpeedGunBeDisabled)
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            int numPlayerChildren = player.transform.childCount;
-            for (int i = 0; i < numPlayerChildren; i++)
-            {
-                GameObject playerChild = player.transform.GetChild(i).gameObject;
-                if (playerChild.tag.Equals("Gun"))
-                {
-                    if (shouldSizeGunBeDisabled && shouldSpeedGunBeDisabled)
-                    {
-                        playerChild.SetActive(false);
-                    }
-                    else if (shouldSizeGunBeDisabled)
-                    {
-                        GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
-                        gunShoot.SetGunMode(GunShoot.Mode.MovementSpeedScale);
-                        gunShoot.DisableGunMode(GunShoot.Mode.SizeScale);
-                    }
-                    else if (shouldSpeedGunBeDisabled)
-                    {
-                        GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
-                        gunShoot.SetGunMode(GunShoot.Mode.SizeScale);
-                        gunShoot.DisableGunMode(GunShoot.Mode.MovementSpeedScale);
-                    }
-                }
-            }
-        }
+        
     }
 
     public void LoadNextLevel()
@@ -93,5 +66,42 @@ public class LevelManager : MonoBehaviour
     public void ResetCurrentLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void DisableGuns()
+    {
+        bool shouldSizeGunBeDisabled = instance.levelNamesWhereSizeGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name);
+        bool shouldSpeedGunBeDisabled = instance.levelNamesWhereSpeedGunShouldBeDisabled.Contains(SceneManager.GetActiveScene().name);
+        if (shouldSizeGunBeDisabled || shouldSpeedGunBeDisabled)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            int numPlayerChildren = player.transform.childCount;
+            for (int i = 0; i < numPlayerChildren; i++)
+            {
+                GameObject playerChild = player.transform.GetChild(i).gameObject;
+                if (playerChild.tag.Equals("Gun"))
+                {
+                    if (shouldSizeGunBeDisabled && shouldSpeedGunBeDisabled)
+                    {
+                        GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
+                        gunShoot.DisableGunMode(GunShoot.Mode.SizeScale);
+                        gunShoot.DisableGunMode(GunShoot.Mode.MovementSpeedScale);
+                        playerChild.SetActive(false);
+                    }
+                    else if (shouldSizeGunBeDisabled)
+                    {
+                        GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
+                        gunShoot.SetGunMode(GunShoot.Mode.MovementSpeedScale);
+                        gunShoot.DisableGunMode(GunShoot.Mode.SizeScale);
+                    }
+                    else if (shouldSpeedGunBeDisabled)
+                    {
+                        GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
+                        gunShoot.SetGunMode(GunShoot.Mode.SizeScale);
+                        gunShoot.DisableGunMode(GunShoot.Mode.MovementSpeedScale);
+                    }
+                }
+            }
+        }
     }
 }

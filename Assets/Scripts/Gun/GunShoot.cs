@@ -17,7 +17,7 @@ public class GunShoot : MonoBehaviour
         MovementSpeedScale
     }
     private Mode currentMode;
-    private List<Mode> disabledModes;
+    private List<Mode> disabledModes = new List<Mode>();
     public Mode GetMode()
     {
         return currentMode;
@@ -27,7 +27,7 @@ public class GunShoot : MonoBehaviour
 
     private void Awake()
     {
-        disabledModes = new List<Mode>();
+        
     }
     void Start()
     {
@@ -42,7 +42,7 @@ public class GunShoot : MonoBehaviour
         // Set Gun Mode
         if (Input.GetKeyDown(KeyCode.Alpha1) && !disabledModes.Contains(Mode.SizeScale))
         {
-            PlayRandomizedPitchAudioClip(switchGunAudioSource);
+                PlayRandomizedPitchAudioClip(switchGunAudioSource);
             SetGunMode(Mode.SizeScale);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && !disabledModes.Contains(Mode.MovementSpeedScale))
@@ -51,7 +51,8 @@ public class GunShoot : MonoBehaviour
             SetGunMode(Mode.MovementSpeedScale);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        // Shoot
+        if (Input.GetMouseButtonDown(0) && CanShoot())
         {
             // Get world position of mouse.
             Vector3 mousePos = Input.mousePosition;
@@ -66,8 +67,8 @@ public class GunShoot : MonoBehaviour
             {
                 hit = Physics2D.Raycast(transform.position, transform.position - mousePos);
             }
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, mousePos);
+            lineRenderer.SetPosition(0, Vector2.zero);
+            lineRenderer.SetPosition(1, transform.InverseTransformPoint(mousePos));
             ProcessHit(hit);
         }
     }
@@ -89,6 +90,26 @@ public class GunShoot : MonoBehaviour
     {
         disabledModes.Add(mode);
     }
+    public void EnableGunMode(Mode mode)
+    {
+        disabledModes.Remove(mode);
+    }
+
+    private bool CanShoot()
+    {
+        GameObject player = transform.parent.parent.gameObject;
+        if (!player || player.tag != "Player") return false;
+
+        bool scaleIsChanging = player.GetComponent<SizeScaler>().GetScaleIsChanging();
+        Debug.Log(scaleIsChanging);
+        if (scaleIsChanging)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     private void ProcessHit(RaycastHit2D hit)
     {
         if (!hit)
@@ -98,7 +119,7 @@ public class GunShoot : MonoBehaviour
             return;
         }
 
-        lineRenderer.SetPosition(1, hit.point);
+        lineRenderer.SetPosition(1, transform.InverseTransformPoint(hit.point));
         StartCoroutine(ShotEffect());
 
         if (currentMode == Mode.SizeScale)

@@ -27,6 +27,8 @@ public class GunPickup : MonoBehaviour
                 if (playerChild.tag.Equals("Gun"))
                 {
                     playerChild.SetActive(true);
+                    GunShoot gunShoot = playerChild.GetComponentInChildren<GunShoot>();
+                    gunShoot.EnableGunMode(GunShoot.Mode.SizeScale);
                     this.gameObject.SetActive(false);
                 }
             }

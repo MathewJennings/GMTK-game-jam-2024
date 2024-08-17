@@ -37,6 +37,11 @@ public class SizeScaler : MonoBehaviour
         return transformScaleMultiplier;
     }
 
+    public bool GetScaleIsChanging()
+    {
+        return scaleIsChanging;
+    }
+
     public bool DoesScale()
     {
         return scaleTransformX || scaleTransformY;
@@ -87,8 +92,7 @@ public class SizeScaler : MonoBehaviour
     {
         scaleTimeElapsedPercentage += Time.deltaTime / scaleTimeInSecs;
         gameObject.transform.localScale = Vector3.Slerp(initialLocalScale, targetLocalScale, scaleTimeElapsedPercentage);
-        // Consider checking scaleTimeElapsedPercentage >= 1.0f instead
-        if (gameObject.transform.localScale.Equals(targetLocalScale))
+        if (scaleTimeElapsedPercentage >= 1.0f)
         {
             CompleteSmoothScaling();
         }
