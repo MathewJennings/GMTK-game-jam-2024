@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private MovementSpeedScaler speedScalar;
 
-    private bool isTouchingGround = false;
+    private HashSet<GameObject> groundsBeingTouched = new();
+    private bool startedAJump = false;
     private float timeLastTouchedGround = -10f;
     private float coyoteTimeAmount = .2f;
 
@@ -31,6 +32,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) &&
+            (groundsBeingTouched.Count > 0 || (Time.time - timeLastTouchedGround < coyoteTimeAmount)))
+        {
+            startedAJump = true;
+        }
     }
 
     private void FixedUpdate()
@@ -49,14 +55,12 @@ public class PlayerController : MonoBehaviour
             rb.velocity = currentYVelocity + (Vector2.right * moveMult * speedScalar.PollMultipler());
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (startedAJump)
         {
-            if (isTouchingGround || (Time.time - timeLastTouchedGround < coyoteTimeAmount))
-            {
-                isTouchingGround = false;
-                timeLastTouchedGround = -10f;
-                rb.AddForce(Vector2.up * jumpMult, ForceMode2D.Impulse);
-            }
+            rb.AddForce(Vector2.up * jumpMult, ForceMode2D.Impulse);
+            // Reset jump state
+            startedAJump = false;
+            timeLastTouchedGround = -10f;
         }
 
         //// Scale gravity based on jumping or falling.
@@ -69,21 +73,46 @@ public class PlayerController : MonoBehaviour
         //    rb.gravityScale = fallingGravityScale;
         //}
     }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        isTouchingGround = false;
-        if (collision.gameObject.tag.Equals("Platform") &&
-            //dont retrigger coyote time if we just jumped
-            !Input.GetKey(KeyCode.Space))
-        {
-            timeLastTouchedGround = Time.time;
-        }
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Platform"))
+        CheckForGroundCollision(collision.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        CheckForGroundCollision(collision.gameObject);
+    }
+
+    private void CheckForGroundCollision(GameObject gameObject)
+    {
+        if (gameObject.GetComponent<JumpableSurface>() != null)
         {
-            isTouchingGround = true;
+            groundsBeingTouched.Add(gameObject);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        CheckForGroundExit(collision.gameObject);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        CheckForGroundExit(collision.gameObject);
+    }
+
+    private void CheckForGroundExit(GameObject gameObject)
+    {
+        if (gameObject.GetComponent<JumpableSurface>() != null)
+        {
+            groundsBeingTouched.Remove(gameObject);
+            if (groundsBeingTouched.Count == 0)
+            {
+                //dont retrigger coyote time if we just jumped
+                if (!Input.GetKey(KeyCode.Space))
+                {
+                    timeLastTouchedGround = Time.time;
+                }
+            }
         }
     }
 }
