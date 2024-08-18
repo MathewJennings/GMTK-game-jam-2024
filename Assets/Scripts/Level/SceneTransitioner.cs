@@ -13,7 +13,7 @@ public class SceneTransitioner : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI levelText;
 
-    private Vector3 fullyExpandedVector = new Vector3(1.5f, 1.5f, 1.5f);
+    private Vector3 fullyExpandedVector = new Vector3(3f, 3f, 3f);
 
     private void Awake()
     {
