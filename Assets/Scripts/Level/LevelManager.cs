@@ -35,7 +35,6 @@ public class LevelManager : MonoBehaviour
         {
             audioSource.Play();
             instance = this;
-            DisableGuns();
             DontDestroyOnLoad(this);
         }
         else if (instance != this)
@@ -52,22 +51,23 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            ResetCurrentLevel();
+            ResetCurrentLevel(0.5f, 0.1f);
         }
     }
 
     public void LoadNextLevel()
     {
+        SceneTransitioner sceneTransitioner = instance.gameObject.GetComponent<SceneTransitioner>();
         int currentLevelIndex = instance.levelNames.IndexOf(SceneManager.GetActiveScene().name);
         if (currentLevelIndex == instance.levelNames.Count - 1)
         {
-            SceneManager.LoadScene("TheEnd");
+            sceneTransitioner.LoadScene("TheEnd", 2f, 0.2f, LeanTweenType.easeInExpo);
         }
         else
         {
-            SceneManager.LoadScene(instance.levelNames[++currentLevelIndex]);
+            sceneTransitioner.LoadScene(instance.levelNames[++currentLevelIndex], 2f, 0.2f, LeanTweenType.easeInExpo);
         }
     }
 
@@ -75,12 +75,12 @@ public class LevelManager : MonoBehaviour
     {
         // Decoupled from resetting the level because we might want to
         // go back later and show a menu instead of resetting
-        ResetCurrentLevel();
+        ResetCurrentLevel(1f, 0.2f);
     }
 
-    public void ResetCurrentLevel()
+    public void ResetCurrentLevel(float transitionTime, float pauseTime)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        instance.gameObject.GetComponent<SceneTransitioner>().LoadScene(SceneManager.GetActiveScene().name, transitionTime, pauseTime);
     }
 
     private void DisableGuns()
