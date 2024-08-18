@@ -1247,8 +1247,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8235800894151738612, guid: be4cef35a1d9b7c41a2de3e269d70620, type: 3}
-      propertyPath: transformScaleMultiplier
+      propertyPath: scaleTransformX
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235800894151738612, guid: be4cef35a1d9b7c41a2de3e269d70620, type: 3}
+      propertyPath: transformScaleMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8961692556322904351, guid: be4cef35a1d9b7c41a2de3e269d70620, type: 3}
       propertyPath: m_Name

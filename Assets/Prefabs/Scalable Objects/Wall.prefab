@@ -332,6 +332,10 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 0.0067554414
       objectReference: {fileID: 0}
+    - target: {fileID: 6324339852340974888, guid: d428d6601e2cf734380175b412d49bde, type: 3}
+      propertyPath: scaleTransformX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6472151191206791363, guid: d428d6601e2cf734380175b412d49bde, type: 3}
       propertyPath: m_Name
       value: Platform
