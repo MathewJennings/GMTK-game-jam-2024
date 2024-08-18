@@ -18,6 +18,8 @@ public class SceneTransitioner : MonoBehaviour
     private void Awake()
     {
         levelText.text = SceneManager.GetActiveScene().name.Replace('_', ' ');
+        levelText.gameObject.SetActive(true);
+        Invoke("DisableLevelText", 5f);
     }
 
     public void LoadScene(string sceneName, float transitionTime, float pauseTime)
@@ -48,7 +50,11 @@ public class SceneTransitioner : MonoBehaviour
         LeanTween.scale(fader, Vector3.zero, 0);
         LeanTween.scale(fader, fullyExpandedVector, transitionBackTime).setEase(easeType).setOnComplete(() =>
         {
-            levelText.gameObject.SetActive(false);
+            Invoke("DisableLevelText", 3f);
         });
+    }
+    void DisableLevelText()
+    {
+        levelText.gameObject.SetActive(false);
     }
 }
