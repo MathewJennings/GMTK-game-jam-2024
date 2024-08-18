@@ -1009,28 +1009,28 @@ MonoBehaviour:
   scientistWithArms: {fileID: 21300000, guid: b5a1542313e8d41ef8494f658b4f346d, type: 3}
   scientistWithoutArms: {fileID: 21300000, guid: 11a55e37f39e84f5588c1688cad6f6a9, type: 3}
   levelNames:
-  - InitialScene1
-  - InitialScene2
-  - InitialScene2a
-  - InitialScene3
-  - InitialScene3a
-  - InitialScene7
-  - InitialScene8
-  - InitialScene4
-  - InitialScene4a
-  - InitialScene5
-  - InitialScene10
+  - 1_-_A_Brave_New_World
+  - 2_-_Where_Did_I_Leave_That
+  - 3_-_Set_Your_Phaser_To_Size
+  - 4_-_Mind_the_Gap
+  - 5_-_They_Move_Too
+  - 6_-_Set_Your_Phaser_To_Speed
+  - 7_-_A_Dangerous_Development
+  - 8_-_Warp_Speed
+  - 9_-_Ludicrous_Speed
+  - 10_-_The_Zipper
+  - 11_-_Anticlimax
   audioSource: {fileID: 6209180989020845273}
   pauseMenu: {fileID: 1957149132195925143}
   levelNamesWhereSizeGunShouldBeDisabled:
-  - InitialScene1
-  - InitialScene2
+  - 1_-_A_Brave_New_World
+  - 2_-_Where_Did_I_Leave_That
   levelNamesWhereSpeedGunShouldBeDisabled:
-  - InitialScene1
-  - InitialScene2
-  - InitialScene2a
-  - InitialScene3
-  - InitialScene3a
+  - 1_-_A_Brave_New_World
+  - 2_-_Where_Did_I_Leave_That
+  - 3_-_Set_Your_Phaser_To_Size
+  - 4_-_Mind_the_Gap
+  - 5_-_They_Move_Too
 --- !u!82 &6209180989020845273
 AudioSource:
   m_ObjectHideFlags: 0
