@@ -8,6 +8,9 @@ public class GunPickup : MonoBehaviour
     [SerializeField]
     private GunShoot.Mode modeToEnable;
 
+    [SerializeField]
+    private Sprite scientistWithoutArms;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class GunPickup : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             int numPlayerChildren = collision.transform.childCount;
+            SpriteRenderer playerSpriteRenderer = null;
             for (int i = 0; i < numPlayerChildren; i++)
             {
                 GameObject playerChild = collision.transform.GetChild(i).gameObject;
@@ -35,6 +39,10 @@ public class GunPickup : MonoBehaviour
                     gunShoot.EnableGunMode(modeToEnable);
                     gunShoot.SetGunMode(modeToEnable);
                     this.gameObject.SetActive(false);
+                }
+                if (playerChild.name.Equals("PlayerSprite"))
+                {
+                    playerChild.GetComponent<SpriteRenderer>().sprite = scientistWithoutArms;
                 }
             }
         }
