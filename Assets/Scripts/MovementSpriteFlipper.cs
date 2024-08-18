@@ -10,6 +10,11 @@ public class VelocitySpriteFlipper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Don't read inputs if time is frozen (i.e. we are paused).
+        if (Time.timeScale <= 0)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.A))
         {
             spriteRenderer.flipX = true;

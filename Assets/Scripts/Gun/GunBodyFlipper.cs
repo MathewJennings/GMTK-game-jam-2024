@@ -13,6 +13,12 @@ public class GunBodyFlipper : MonoBehaviour
 
     private void Update()
     {
+        // Don't read inputs if time is frozen (i.e. we are paused).
+        if (Time.timeScale <= 0)
+        {
+            return;
+        }
+
         // Set rotation of gun.
         Vector3 mousePos = Input.mousePosition;
         // Offset the camera's z position.
