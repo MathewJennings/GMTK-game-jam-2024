@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d700eb32383a44632bced28a9e7ad069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scientistWithArms: {fileID: 21300000, guid: b5a1542313e8d41ef8494f658b4f346d, type: 3}
+  scientistWithoutArms: {fileID: 21300000, guid: 11a55e37f39e84f5588c1688cad6f6a9, type: 3}
   levelNames:
   - InitialScene1
   - InitialScene2

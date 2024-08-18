@@ -7,6 +7,12 @@ public class LevelManager : MonoBehaviour
 {
 
     [SerializeField]
+    private Sprite scientistWithArms;
+
+    [SerializeField]
+    private Sprite scientistWithoutArms;
+
+    [SerializeField]
     private List<string> levelNames;
 
     [SerializeField]
@@ -76,6 +82,8 @@ public class LevelManager : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             int numPlayerChildren = player.transform.childCount;
+            SpriteRenderer playerSpriteRenderer = null;
+            bool usePlayerSpriteWithArms = false;
             for (int i = 0; i < numPlayerChildren; i++)
             {
                 GameObject playerChild = player.transform.GetChild(i).gameObject;
@@ -87,6 +95,7 @@ public class LevelManager : MonoBehaviour
                         gunShoot.DisableGunMode(GunShoot.Mode.SizeScale);
                         gunShoot.DisableGunMode(GunShoot.Mode.MovementSpeedScale);
                         playerChild.SetActive(false);
+                        usePlayerSpriteWithArms = true;
                     }
                     else if (shouldSizeGunBeDisabled)
                     {
@@ -101,7 +110,12 @@ public class LevelManager : MonoBehaviour
                         gunShoot.DisableGunMode(GunShoot.Mode.MovementSpeedScale);
                     }
                 }
+                if (playerChild.name.Equals("PlayerSprite"))
+                {
+                    playerSpriteRenderer = playerChild.GetComponent<SpriteRenderer>();
+                }
             }
+            playerSpriteRenderer.sprite = usePlayerSpriteWithArms ? scientistWithArms : scientistWithoutArms;
         }
     }
 }
