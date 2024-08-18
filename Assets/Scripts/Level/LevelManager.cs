@@ -78,11 +78,11 @@ public class LevelManager : MonoBehaviour
             instance.pauseMenu.SetActive(false);
         }
     }
-    public void ClickMainMenu()
+    public void ClickBackToStart()
     {
         Time.timeScale = 1;
         instance.pauseMenu.SetActive(false);
-        LoadMainMenu();
+        LoadLevelZero();
     }
 
     public void ClickResetLevel()
@@ -105,9 +105,10 @@ public class LevelManager : MonoBehaviour
         LoadNextLevel();
     }
 
-    public void LoadMainMenu()
+    public void LoadLevelZero()
     {
-        // TODO
+        SceneTransitioner sceneTransitioner = instance.gameObject.GetComponent<SceneTransitioner>();
+        sceneTransitioner.LoadScene(instance.levelNames[0], 2f, 0.0f, LeanTweenType.easeInOutQuint);
     }
 
     public void LoadPrevLevel()
