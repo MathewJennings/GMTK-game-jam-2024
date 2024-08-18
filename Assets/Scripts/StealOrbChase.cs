@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StealOrbChase : MonoBehaviour
 {
-    private Vector3 origin;
-    private Vector3 target;
+    private Transform origin;
+    private Transform target;
     private float duration = 0.5f;
     private float timeElapsedPercentage = 0.0f;
 
@@ -15,11 +15,11 @@ public class StealOrbChase : MonoBehaviour
         timeElapsedPercentage = 0.0f;
     }
 
-    public void SetOrigin(Vector3 o)
+    public void SetOrigin(Transform o)
     {
         origin = o;
     }
-    public void SetTarget(Vector3 t)
+    public void SetTarget(Transform t)
     {
         target = t;
     }
@@ -28,7 +28,7 @@ public class StealOrbChase : MonoBehaviour
     void Update()
     {
         timeElapsedPercentage += Time.deltaTime / duration;
-        gameObject.transform.position = Vector3.Slerp(origin, target, timeElapsedPercentage);
+        gameObject.transform.position = Vector3.Slerp(origin.position, target.position, timeElapsedPercentage);
         if (timeElapsedPercentage >= 1.0f)
         {
             Destroy(gameObject);

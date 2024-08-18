@@ -182,17 +182,22 @@ public class GunShoot : MonoBehaviour
 
     private void CreateStealOrbs(RaycastHit2D hit)
     {
-        Vector3 hitPoint = hit.point;
+        // Create an empty gameobject with position that the orbs can slerp to and from.
+        GameObject hitPoint = new GameObject("hitPointEnd");
+        hitPoint.transform.position = hit.point;
 
         Transform toOrb = Instantiate(stealOrb, transform.position, Quaternion.identity);
         toOrb.GetComponent<SpriteRenderer>().color = new Color(255, 90, 0); // orange
-        toOrb.GetComponent<StealOrbChase>().SetOrigin(transform.position);
-        toOrb.GetComponent<StealOrbChase>().SetTarget(hitPoint);
+        toOrb.GetComponent<StealOrbChase>().SetOrigin(transform);
+        toOrb.GetComponent<StealOrbChase>().SetTarget(hitPoint.transform);
 
         Transform fromOrb = Instantiate(stealOrb, hit.transform.position, Quaternion.identity);
         fromOrb.GetComponent<SpriteRenderer>().color = new Color(0, 100, 255); // blue
-        fromOrb.GetComponent<StealOrbChase>().SetOrigin(hitPoint);
-        fromOrb.GetComponent<StealOrbChase>().SetTarget(transform.position);
+        fromOrb.GetComponent<StealOrbChase>().SetOrigin(hitPoint.transform);
+        fromOrb.GetComponent<StealOrbChase>().SetTarget(transform);
+
+        // Destroy empty hitPoint object after 1 second.
+        Destroy(hitPoint, 1f);
     }
 
     private void PlayRandomizedPitchAudioClip(AudioSource audioSource)
