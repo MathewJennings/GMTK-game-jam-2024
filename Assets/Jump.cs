@@ -15,6 +15,11 @@ public class Jump : MonoBehaviour
     private bool startedAJump = false;
     private float timeLastTouchedGround = -10f;
     private float coyoteTimeAmount = .2f;
+
+    public bool IsPlayerOnGround()
+    {
+        return groundsBeingTouched.Count > 0;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +83,7 @@ public class Jump : MonoBehaviour
     {
         if (gameObject.GetComponent<JumpableSurface>() != null)
         {
+            
             groundsBeingTouched.Remove(gameObject);
             if (groundsBeingTouched.Count == 0)
             {
