@@ -185,6 +185,7 @@ public class GunShoot : MonoBehaviour
         // Create an empty gameobject with position that the orbs can slerp to and from.
         GameObject hitPoint = new GameObject("hitPointEnd");
         hitPoint.transform.position = hit.point;
+        hitPoint.transform.SetParent(hit.transform);
 
         Transform toOrb = Instantiate(stealOrb, transform.position, Quaternion.identity);
         toOrb.GetComponent<SpriteRenderer>().color = new Color(255, 90, 0); // orange

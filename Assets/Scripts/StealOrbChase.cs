@@ -30,7 +30,7 @@ public class StealOrbChase : MonoBehaviour
         timeElapsedPercentage += Time.deltaTime / duration;
         if (origin && target)
         {
-            gameObject.transform.position = Vector3.Slerp(origin.position, target.position, timeElapsedPercentage);
+            gameObject.transform.position = Vector3.Lerp(origin.position, target.position, timeElapsedPercentage);
         }
         if (timeElapsedPercentage >= 1.0f)
         {
