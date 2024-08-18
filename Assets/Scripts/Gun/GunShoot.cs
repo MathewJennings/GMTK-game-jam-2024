@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class GunShoot : MonoBehaviour
 {
     Camera camera;
+
+    [SerializeField]
+    private Transform stealOrb;
 
     public AudioSource fireAudioSource;
     public AudioSource failFireAudioSource;
@@ -143,7 +147,8 @@ public class GunShoot : MonoBehaviour
                 else
                 {
                     hitScaler.SwapTransformScaleMultiplier(meScaler);
-                    PlayRandomizedPitchAudioClip(fireAudioSource);  
+                    CreateStealOrbs(hit);
+                    PlayRandomizedPitchAudioClip(fireAudioSource);
                 }
             }
             else
@@ -172,6 +177,7 @@ public class GunShoot : MonoBehaviour
             else
             {
                 hitScaler.SwapMultiplier(meScaler);
+                CreateStealOrbs(hit);
             }
         } else
         {
@@ -179,6 +185,22 @@ public class GunShoot : MonoBehaviour
         }
 
     }
+
+    private void CreateStealOrbs(RaycastHit2D hit)
+    {
+        Vector3 hitPoint = hit.point;
+
+        Transform toOrb = Instantiate(stealOrb, transform.position, Quaternion.identity);
+        toOrb.GetComponent<SpriteRenderer>().color = new Color(255, 90, 0); // orange
+        toOrb.GetComponent<StealOrbChase>().SetOrigin(transform.position);
+        toOrb.GetComponent<StealOrbChase>().SetTarget(hitPoint);
+
+        Transform fromOrb = Instantiate(stealOrb, hit.transform.position, Quaternion.identity);
+        fromOrb.GetComponent<SpriteRenderer>().color = new Color(0, 100, 255); // blue
+        fromOrb.GetComponent<StealOrbChase>().SetOrigin(hitPoint);
+        fromOrb.GetComponent<StealOrbChase>().SetTarget(transform.position);
+    }
+
     private void PlayRandomizedPitchAudioClip(AudioSource audioSource)
     {
         audioSource.pitch = Random.Range(0.6f, 1f);
