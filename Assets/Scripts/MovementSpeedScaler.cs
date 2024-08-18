@@ -6,9 +6,16 @@ using UnityEngine.UI;
 public class MovementSpeedScaler : MonoBehaviour
 {
     [SerializeField]
+    private bool isMovable = true;
+    [SerializeField]
     private float multiplier = 1f;
     [SerializeField]
     private Button indicatorButton;
+
+    public bool getIsMovable()
+    {
+        return isMovable;
+    }
 
     public float getMultiplier()
     {
