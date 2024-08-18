@@ -8,6 +8,8 @@ public class GunBodyFlipper : MonoBehaviour
     private Transform playerTransform;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private RectTransform indicatorsCanvas;
 
     private void Update()
     {
@@ -21,9 +23,19 @@ public class GunBodyFlipper : MonoBehaviour
 
         if (xOffset < 0)
         {
-            spriteRenderer.flipY = true; 
+            if (!spriteRenderer.flipY)
+            {
+                Vector3 currScale = indicatorsCanvas.localScale;
+                indicatorsCanvas.localScale = new Vector3(currScale.x, -1 * currScale.y, currScale.z);
+            }
+            spriteRenderer.flipY = true;
         } else if (xOffset > 0)
         {
+            if (spriteRenderer.flipY)
+            {
+                Vector3 currScale = indicatorsCanvas.localScale;
+                indicatorsCanvas.localScale = new Vector3(currScale.x, -1 * currScale.y, currScale.z);
+            }
             spriteRenderer.flipY = false;
         }
     }
