@@ -20,6 +20,9 @@ public class LevelManager : MonoBehaviour
     private AudioSource audioSource;
 
     [SerializeField]
+    private GameObject pauseMenu;
+
+    [SerializeField]
     private List<string> levelNamesWhereSizeGunShouldBeDisabled;
 
     [SerializeField]
@@ -55,6 +58,24 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetCurrentLevel(0.5f, 0.1f);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TogglePauseMenu();
+        }
+    }
+
+    private void TogglePauseMenu()
+    {
+        // Toggle time scale to freeze or resume time.
+        Time.timeScale = Time.timeScale > 0 ? 0 : 1;
+        if (Time.timeScale == 0)
+        {
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            pauseMenu.SetActive(false);
         }
     }
 
