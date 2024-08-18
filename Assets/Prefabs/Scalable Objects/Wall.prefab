@@ -208,7 +208,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3a8fdfa4954a0bf43a6c04a74dc96a49, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -228,7 +228,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 9154005906256448050}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3a8fdfa4954a0bf43a6c04a74dc96a49, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -323,6 +323,14 @@ PrefabInstance:
     - target: {fileID: 3077297919777386631, guid: d428d6601e2cf734380175b412d49bde, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488983465239261716, guid: d428d6601e2cf734380175b412d49bde, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8919048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488983465239261716, guid: d428d6601e2cf734380175b412d49bde, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0067554414
       objectReference: {fileID: 0}
     - target: {fileID: 6472151191206791363, guid: d428d6601e2cf734380175b412d49bde, type: 3}
       propertyPath: m_Name

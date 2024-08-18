@@ -64,10 +64,18 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3564772192751195649, guid: d428d6601e2cf734380175b412d49bde, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4488983465239261716, guid: d428d6601e2cf734380175b412d49bde, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 0f66a893714b6504595fb4fc57dd81c4, type: 2}
+    - target: {fileID: 5487164556447593667, guid: d428d6601e2cf734380175b412d49bde, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5528943393512883449, guid: d428d6601e2cf734380175b412d49bde, type: 3}
       propertyPath: isMovable
       value: 1
