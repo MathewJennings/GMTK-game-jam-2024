@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Don't read inputs if time is frozen (i.e. we are paused).
+        if (Time.timeScale <= 0)
+        {
+            return;
+        }
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         // Player movement
