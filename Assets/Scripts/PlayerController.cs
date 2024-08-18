@@ -46,15 +46,20 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         // Player movement
-        Vector2 currentYVelocity = gameObject.GetComponent<Rigidbody2D>().velocity * Vector2.up;
-        if (Input.GetKey(KeyCode.A))
+        float speedScalerMultiplier = speedScalar.PollMultipler();
+        // Only read movement input if we'll have a non-zero movement speed.
+        if (moveMult > 0 && speedScalerMultiplier > 0)
         {
-            rb.velocity = currentYVelocity + (Vector2.left * moveMult * speedScalar.PollMultipler());
-        }
+            Vector2 currentYVelocity = gameObject.GetComponent<Rigidbody2D>().velocity * Vector2.up;
+            if (Input.GetKey(KeyCode.A))
+            {
+                rb.velocity = currentYVelocity + (Vector2.left * moveMult * speedScalerMultiplier);
+            }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            rb.velocity = currentYVelocity + (Vector2.right * moveMult * speedScalar.PollMultipler());
+            if (Input.GetKey(KeyCode.D))
+            {
+                rb.velocity = currentYVelocity + (Vector2.right * moveMult * speedScalerMultiplier);
+            }
         }
 
         if (startedAJump)
@@ -65,16 +70,6 @@ public class PlayerController : MonoBehaviour
             startedAJump = false;
             timeLastTouchedGround = -10f;
         }
-
-        //// Scale gravity based on jumping or falling.
-        //if (rb.velocity.y >= 0)
-        //{
-        //    rb.gravityScale = gravityScale;
-        //}
-        //else if (rb.velocity.y < 0)
-        //{
-        //    rb.gravityScale = fallingGravityScale;
-        //}
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
