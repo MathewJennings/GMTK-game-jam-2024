@@ -6,6 +6,7 @@ public class FinishLine : MonoBehaviour
 {
     public AudioSource audioSource;
     private LevelManager levelManager;
+    private bool haveFinished;
 
     private void Start()
     {
@@ -21,13 +22,14 @@ public class FinishLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Player"))
+        if (collision.gameObject.tag.Equals("Player") && !haveFinished)
         {
             EndCurrentLevel();
         }
     }
     private void EndCurrentLevel()
     {
+        haveFinished = true;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<Rigidbody2D>().drag *= 10f;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
