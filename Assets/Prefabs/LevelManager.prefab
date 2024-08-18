@@ -53,11 +53,11 @@ MonoBehaviour:
   - InitialScene2a
   - InitialScene3
   - InitialScene3a
+  - InitialScene7
+  - InitialScene8
   - InitialScene4
   - InitialScene4a
   - InitialScene5
-  - InitialScene7
-  - InitialScene8
   - InitialScene10
   audioSource: {fileID: 6209180989020845273}
   levelNamesWhereSizeGunShouldBeDisabled:
