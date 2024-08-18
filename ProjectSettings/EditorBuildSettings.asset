@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/1_-_A_Brave_New_World.unity
     guid: 672496a92812d430e9e97cd94a9cad71
   - enabled: 1
-    path: Assets/Scenes/Levels/2_-_Where_Did_I_Leave_That.unity
+    path: Assets/Scenes/Levels/2_-_Weight_I_Forgot_Something.unity
     guid: 19f17352600014ac1a12b02d5b0d5d4a
   - enabled: 1
     path: Assets/Scenes/Levels/3_-_Set_Your_Phaser_To_Size.unity

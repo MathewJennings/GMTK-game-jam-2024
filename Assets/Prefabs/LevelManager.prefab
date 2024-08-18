@@ -1201,10 +1201,10 @@ MonoBehaviour:
   pauseMenu: {fileID: 1957149132195925143}
   levelNamesWhereSizeGunShouldBeDisabled:
   - 1_-_A_Brave_New_World
-  - 2_-_Where_Did_I_Leave_That
+  - 2_-_Weight_I_Forgot_Something
   levelNamesWhereSpeedGunShouldBeDisabled:
   - 1_-_A_Brave_New_World
-  - 2_-_Where_Did_I_Leave_That
+  - 2_-_Weight_I_Forgot_Something
   - 3_-_Set_Your_Phaser_To_Size
   - 4_-_Mind_the_Gap
   - 5_-_Through_The_Looking_Glass
