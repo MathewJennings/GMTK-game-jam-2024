@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4030676294529905496}
   - component: {fileID: 7070424513941903183}
   - component: {fileID: 4178484442751712895}
+  - component: {fileID: 1319291544787046415}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: -918333943, guid: a68d01277c0f59c49bad9b0c0abd362d, type: 3}
   m_Color: {r: 0.5089054, g: 0, b: 0.59748423, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -199,6 +200,7 @@ MonoBehaviour:
   scaleTransformX: 1
   scaleTransformY: 1
   scaleTimeInSecs: 0.5
+  indicatorButton: {fileID: 0}
 --- !u!114 &7070424513941903183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
+  indicatorButton: {fileID: 0}
 --- !u!82 &4178484442751712895
 AudioSource:
   m_ObjectHideFlags: 0
@@ -308,3 +311,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1319291544787046415
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2499144670263058144}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0b9f9a955c5041a4eae30908d9ba6dda, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
