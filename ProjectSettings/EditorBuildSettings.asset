@@ -33,11 +33,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/4_-_Mind_the_Gap.unity
     guid: a2d7bfa7f987b4b54a9e6640bab9f1d8
   - enabled: 1
-    path: Assets/Scenes/Levels/7_-_They_Move_Too.unity
-    guid: 85b1dc34a1f9a0a40a0685c1cfc5c319
+    path: Assets/Scenes/Levels/5_-_Through_The_Looking_Glass.unity
+    guid: 1c48302a5497d634c93ffc7e09038574
   - enabled: 1
     path: Assets/Scenes/Levels/6_-_Set_Your_Phaser_To_Speed.unity
     guid: bf117a798ead1654bbf2a23ba19bf0cd
+  - enabled: 1
+    path: Assets/Scenes/Levels/7_-_They_Move_Too.unity
+    guid: 85b1dc34a1f9a0a40a0685c1cfc5c319
   - enabled: 1
     path: Assets/Scenes/Levels/8_-_A_Dangerous_Development.unity
     guid: 0fb3b0282be84064a81771812a1238e4
