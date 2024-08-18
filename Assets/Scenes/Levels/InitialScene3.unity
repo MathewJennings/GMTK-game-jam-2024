@@ -237,7 +237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150580182430750681, guid: 7f4e502c214f29d40aa0fd00b0c0abca, type: 3}
       propertyPath: transformScaleMultiplier
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 9006561099813032767, guid: 7f4e502c214f29d40aa0fd00b0c0abca, type: 3}
       propertyPath: scaleFrom
@@ -775,7 +775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6324339852340974888, guid: d428d6601e2cf734380175b412d49bde, type: 3}
       propertyPath: transformScaleMultiplier
-      value: 0.25
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 6472151191206791363, guid: d428d6601e2cf734380175b412d49bde, type: 3}
       propertyPath: m_Name

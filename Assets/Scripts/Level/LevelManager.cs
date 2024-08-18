@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour
         {
             ResetCurrentLevel(0.5f, 0.1f);
         }
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
         }
@@ -83,6 +83,13 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1;
         instance.pauseMenu.SetActive(false);
         LoadMainMenu();
+    }
+
+    public void ClickResetLevel()
+    {
+        Time.timeScale = 1;
+        instance.pauseMenu.SetActive(false);
+        ResetCurrentLevel(0.5f, 0.1f);
     }
 
     public void ClickPrevLevel()
