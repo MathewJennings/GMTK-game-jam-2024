@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4b6960156170c4bbb9b1042401f071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stealOrb: {fileID: 2565470370005970575, guid: b3b67887d6726ee4b8a28ce9c39d228d, type: 3}
   fireAudioSource: {fileID: 4202861080136104342}
   failFireAudioSource: {fileID: 7740909671517499418}
   switchGunAudioSource: {fileID: 1692934057478996754}

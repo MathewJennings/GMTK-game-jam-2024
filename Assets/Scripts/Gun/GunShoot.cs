@@ -169,9 +169,9 @@ public class GunShoot : MonoBehaviour
             }
             else
             {
-                PlayRandomizedPitchAudioClip(fireAudioSource);
                 hitScaler.SwapMultiplier(meScaler);
                 CreateStealOrbs(hit);
+                PlayRandomizedPitchAudioClip(fireAudioSource);
             }
         } else
         {
