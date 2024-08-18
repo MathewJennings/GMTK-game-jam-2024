@@ -15,6 +15,10 @@ public class GunShoot : MonoBehaviour
     public AudioSource switchGunAudioSource;
     private LineRenderer lineRenderer;
     private WaitForSeconds shotDuration = new WaitForSeconds(.13f);
+
+    private static Color BLUE = new Color(0, 100, 255);
+    private static Color ORANGE = new Color(255, 90, 0);
+
     public enum Mode
     {
         SizeScale,
@@ -87,6 +91,14 @@ public class GunShoot : MonoBehaviour
             PlayRandomizedPitchAudioClip(switchGunAudioSource);
         }
         currentMode = mode;
+        if (mode == Mode.MovementSpeedScale)
+        {
+            GetComponent<SpriteRenderer>().color = ORANGE;
+        }
+        if (mode == Mode.SizeScale)
+        {
+            GetComponent<SpriteRenderer>().color = BLUE;
+        }
         Debug.Log("Updating gun mode to " + mode.ToString());
     }
 
@@ -188,12 +200,12 @@ public class GunShoot : MonoBehaviour
         hitPoint.transform.SetParent(hit.transform);
 
         Transform toOrb = Instantiate(stealOrb, transform.position, Quaternion.identity);
-        toOrb.GetComponent<SpriteRenderer>().color = new Color(255, 90, 0); // orange
+        toOrb.GetComponent<SpriteRenderer>().color = ORANGE;
         toOrb.GetComponent<StealOrbChase>().SetOrigin(transform);
         toOrb.GetComponent<StealOrbChase>().SetTarget(hitPoint.transform);
 
         Transform fromOrb = Instantiate(stealOrb, hit.transform.position, Quaternion.identity);
-        fromOrb.GetComponent<SpriteRenderer>().color = new Color(0, 100, 255); // blue
+        fromOrb.GetComponent<SpriteRenderer>().color = BLUE;
         fromOrb.GetComponent<StealOrbChase>().SetOrigin(hitPoint.transform);
         fromOrb.GetComponent<StealOrbChase>().SetTarget(transform);
 
