@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
         {
             audioSource.Play();
             instance = this;
+            DisableGuns();
             DontDestroyOnLoad(this);
         }
         else if (instance != this)
@@ -67,7 +68,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            sceneTransitioner.LoadScene(instance.levelNames[++currentLevelIndex], 2f, 0.2f, LeanTweenType.easeInExpo);
+            sceneTransitioner.LoadScene(instance.levelNames[++currentLevelIndex], 2f, 0.0f, LeanTweenType.easeInOutQuint);
         }
     }
 

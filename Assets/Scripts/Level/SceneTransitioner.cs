@@ -9,6 +9,8 @@ public class SceneTransitioner : MonoBehaviour
     [SerializeField]
     private RectTransform fader;
 
+    private Vector3 fullyExpandedVector = new Vector3(1.5f, 1.5f, 1.5f);
+
     public void LoadScene(string sceneName, float transitionTime, float pauseTime)
     {
         LoadScene(sceneName, transitionTime, pauseTime, LeanTweenType.easeInOutQuint); 
@@ -16,9 +18,8 @@ public class SceneTransitioner : MonoBehaviour
 
     public void LoadScene(string sceneName, float transitionTime, float pauseTime, LeanTweenType easeType)
     {
-        fader.gameObject.SetActive(true);
-        LeanTween.scale(fader, Vector3.zero, 0);
-        LeanTween.scale(fader, new Vector3(1, 1, 1), transitionTime / 2).setEase(easeType).setOnComplete(() =>
+        LeanTween.scale(fader, fullyExpandedVector, 0);
+        LeanTween.scale(fader, Vector3.zero, transitionTime / 2).setEase(easeType).setOnComplete(() =>
         {
             TriggerWaitAndLoadScene(sceneName, easeType, pauseTime, transitionTime / 2);
         });
@@ -33,9 +34,7 @@ public class SceneTransitioner : MonoBehaviour
     {
         yield return new WaitForSeconds(pauseTime);
         SceneManager.LoadScene(sceneName);
-        LeanTween.scale(fader, Vector3.zero, transitionBackTime).setEase(easeType).setOnComplete(() =>
-        {
-            fader.gameObject.SetActive(false);
-        });
+        LeanTween.scale(fader, Vector3.zero, 0);
+        LeanTween.scale(fader, fullyExpandedVector, transitionBackTime).setEase(easeType);
     }
 }

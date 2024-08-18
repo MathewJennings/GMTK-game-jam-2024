@@ -33,7 +33,7 @@ public class FinishLine : MonoBehaviour
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.GetComponent<Rigidbody2D>().angularVelocity = -70f;
         player.GetComponent<PlayerController>().enabled = false;
-        audioSource.PlayOneShot(audioSource.clip, 1.25f);
+        audioSource.PlayOneShot(audioSource.clip, 1f);
         levelManager.LoadNextLevel();
     }
 }
