@@ -28,7 +28,10 @@ public class StealOrbChase : MonoBehaviour
     void Update()
     {
         timeElapsedPercentage += Time.deltaTime / duration;
-        gameObject.transform.position = Vector3.Slerp(origin.position, target.position, timeElapsedPercentage);
+        if (origin && target)
+        {
+            gameObject.transform.position = Vector3.Slerp(origin.position, target.position, timeElapsedPercentage);
+        }
         if (timeElapsedPercentage >= 1.0f)
         {
             Destroy(gameObject);
