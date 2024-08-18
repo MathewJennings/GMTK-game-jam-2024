@@ -47,6 +47,12 @@ public class GunShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Don't read inputs if time is frozen (i.e. we are paused).
+        if (Time.timeScale <= 0)
+        {
+            return;
+        }
+
         // Set Gun Mode
         if (Input.GetKeyDown(KeyCode.Alpha1) && !disabledModes.Contains(Mode.SizeScale))
         {
