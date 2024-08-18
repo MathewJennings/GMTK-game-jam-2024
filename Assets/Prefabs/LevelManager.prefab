@@ -1185,6 +1185,7 @@ MonoBehaviour:
   scientistWithArms: {fileID: 21300000, guid: b5a1542313e8d41ef8494f658b4f346d, type: 3}
   scientistWithoutArms: {fileID: 21300000, guid: 11a55e37f39e84f5588c1688cad6f6a9, type: 3}
   levelNames:
+  - 0_-_In_The_Lab
   - 1_-_A_Brave_New_World
   - 2_-_Weight_I_Forgot_Something
   - 3_-_Set_Your_Phaser_To_Size
@@ -1200,9 +1201,11 @@ MonoBehaviour:
   audioSource: {fileID: 6209180989020845273}
   pauseMenu: {fileID: 1957149132195925143}
   levelNamesWhereSizeGunShouldBeDisabled:
+  - 0_-_In_The_Lab
   - 1_-_A_Brave_New_World
   - 2_-_Weight_I_Forgot_Something
   levelNamesWhereSpeedGunShouldBeDisabled:
+  - 0_-_In_The_Lab
   - 1_-_A_Brave_New_World
   - 2_-_Weight_I_Forgot_Something
   - 3_-_Set_Your_Phaser_To_Size
