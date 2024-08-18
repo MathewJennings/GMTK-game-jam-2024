@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class LevelManager : MonoBehaviour
 {
@@ -47,6 +48,14 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            ResetCurrentLevel();
+        }
     }
 
     public void LoadNextLevel()
