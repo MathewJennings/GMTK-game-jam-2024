@@ -21,13 +21,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Felix Work Scene.unity
     guid: a245c5bfa0b4b874bb6cafb5b603fa3a
   - enabled: 1
-    path: Assets/Scenes/Levels/InitialScene1.unity
+    path: Assets/Scenes/Levels/1_-_A_Brave_New_World.unity
     guid: 672496a92812d430e9e97cd94a9cad71
   - enabled: 1
     path: Assets/Scenes/Levels/Welcome.unity
     guid: 70399b2a073914c5da3b0fb7737f3d15
   - enabled: 1
-    path: Assets/Scenes/Levels/InitialScene2a.unity
+    path: Assets/Scenes/Levels/3_-_Set_Your_Phaser_to_Size.unity
     guid: 20d58c5427dbb40418d132fe3355d57b
   - enabled: 1
     path: Assets/Scenes/Levels/InitialScene7.unity
@@ -51,7 +51,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/InitialScene3.unity
     guid: a2d7bfa7f987b4b54a9e6640bab9f1d8
   - enabled: 1
-    path: Assets/Scenes/Levels/InitialScene2.unity
+    path: Assets/Scenes/Levels/2_-_Where_Did_I_Leave_That.unity
     guid: 19f17352600014ac1a12b02d5b0d5d4a
   - enabled: 1
     path: Assets/Scenes/Levels/TheEnd.unity

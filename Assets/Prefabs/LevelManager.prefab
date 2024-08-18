@@ -741,8 +741,8 @@ MonoBehaviour:
   scientistWithArms: {fileID: 21300000, guid: b5a1542313e8d41ef8494f658b4f346d, type: 3}
   scientistWithoutArms: {fileID: 21300000, guid: 11a55e37f39e84f5588c1688cad6f6a9, type: 3}
   levelNames:
-  - InitialScene1
-  - InitialScene2
+  - 1_-_A_Brave_New_World
+  - 2_-_Where_Did_I_Leave_That
   - InitialScene2a
   - InitialScene3
   - InitialScene3a

@@ -800,6 +800,10 @@ PrefabInstance:
       propertyPath: currentLevelIndex
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6749985332257198095, guid: 3024af8f7b2b84797a19392b49adf366, type: 3}
+      propertyPath: levelNames.Array.data[2]
+      value: 3_-_Set_Your_Phaser_to_Size
+      objectReference: {fileID: 0}
     - target: {fileID: 6805307391159900351, guid: 3024af8f7b2b84797a19392b49adf366, type: 3}
       propertyPath: m_Name
       value: LevelManager
