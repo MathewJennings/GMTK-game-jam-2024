@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static System.TimeZoneInfo;
@@ -9,7 +10,15 @@ public class SceneTransitioner : MonoBehaviour
     [SerializeField]
     private RectTransform fader;
 
+    [SerializeField]
+    private TextMeshProUGUI levelText;
+
     private Vector3 fullyExpandedVector = new Vector3(1.5f, 1.5f, 1.5f);
+
+    private void Awake()
+    {
+        levelText.text = SceneManager.GetActiveScene().name.Replace('_', ' ');
+    }
 
     public void LoadScene(string sceneName, float transitionTime, float pauseTime)
     {
@@ -21,6 +30,7 @@ public class SceneTransitioner : MonoBehaviour
         LeanTween.scale(fader, fullyExpandedVector, 0);
         LeanTween.scale(fader, Vector3.zero, transitionTime / 2).setEase(easeType).setOnComplete(() =>
         {
+            levelText.gameObject.SetActive(true);
             TriggerWaitAndLoadScene(sceneName, easeType, pauseTime, transitionTime / 2);
         });
     }
@@ -32,9 +42,13 @@ public class SceneTransitioner : MonoBehaviour
 
     private IEnumerator WaitAndLoadScene(string sceneName, LeanTweenType easeType, float pauseTime, float transitionBackTime)
     {
+        levelText.text = sceneName.Replace('_', ' ');
         yield return new WaitForSeconds(pauseTime);
         SceneManager.LoadScene(sceneName);
         LeanTween.scale(fader, Vector3.zero, 0);
-        LeanTween.scale(fader, fullyExpandedVector, transitionBackTime).setEase(easeType);
+        LeanTween.scale(fader, fullyExpandedVector, transitionBackTime).setEase(easeType).setOnComplete(() =>
+        {
+            levelText.gameObject.SetActive(false);
+        });
     }
 }
