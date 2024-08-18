@@ -23,17 +23,17 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            IEnumerator coroutine = EndCurrentLevel(audioSource.clip.length);
-            StartCoroutine(coroutine);
+            EndCurrentLevel();
         }
     }
-    private IEnumerator EndCurrentLevel(float waitTime)
+    private void EndCurrentLevel()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<Rigidbody2D>().drag *= 10f;
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        player.GetComponent<Rigidbody2D>().angularVelocity = -70f;
         player.GetComponent<PlayerController>().enabled = false;
-        audioSource.PlayOneShot(audioSource.clip, 1f);
-        yield return new WaitForSeconds(waitTime);
+        audioSource.PlayOneShot(audioSource.clip, 1.25f);
         levelManager.LoadNextLevel();
     }
 }

@@ -25,19 +25,19 @@ public class DeathCollider : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            IEnumerator coroutine = EndCurrentLevel(deathAudio.clip.length);
+            IEnumerator coroutine = EndCurrentLevel();
             StartCoroutine(coroutine);
 
         }
     }
 
-    private IEnumerator EndCurrentLevel(float waitTime)
+    private IEnumerator EndCurrentLevel()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<Rigidbody2D>().drag *= 10f;
         player.GetComponent<PlayerController>().enabled = false;
         deathAudio.PlayOneShot(deathAudio.clip);
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(0.5f);
         levelManager.PlayerDied();
     }
 }
