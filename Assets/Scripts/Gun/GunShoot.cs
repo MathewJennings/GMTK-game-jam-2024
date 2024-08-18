@@ -155,7 +155,7 @@ public class GunShoot : MonoBehaviour
             MovementSpeedScaler hitScaler = hit.transform.gameObject.GetComponent<MovementSpeedScaler>();
             MovementSpeedScaler meScaler = gameObject.transform.parent.gameObject.GetComponentInParent<MovementSpeedScaler>();
             //Don't swap multiplier if the target is not valid
-            if(meScaler == null || hitScaler == null)
+            if(meScaler == null || hitScaler == null || !hitScaler.getIsMovable())
             {
                 PlayRandomizedPitchAudioClip(failFireAudioSource);
                 return;

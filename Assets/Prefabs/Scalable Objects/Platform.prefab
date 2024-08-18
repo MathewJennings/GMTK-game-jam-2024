@@ -137,6 +137,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7350447414024123644, guid: 5cd36013340caf64083d1494312b0423, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350447414024123644, guid: 5cd36013340caf64083d1494312b0423, type: 3}
       propertyPath: scaleTransformX
       value: 1
       objectReference: {fileID: 0}
@@ -147,6 +151,10 @@ PrefabInstance:
     - target: {fileID: 7500510277427357975, guid: 5cd36013340caf64083d1494312b0423, type: 3}
       propertyPath: m_TagString
       value: Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042200923302913325, guid: 5cd36013340caf64083d1494312b0423, type: 3}
+      propertyPath: isMovable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

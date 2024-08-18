@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GunPickup : MonoBehaviour
@@ -7,6 +8,8 @@ public class GunPickup : MonoBehaviour
 
     [SerializeField]
     private GunShoot.Mode modeToEnable;
+    [SerializeField]
+    private Transform instructionsCanvas;
 
     [SerializeField]
     private Sprite scientistWithoutArms;
@@ -44,6 +47,11 @@ public class GunPickup : MonoBehaviour
                 {
                     playerChild.GetComponent<SpriteRenderer>().sprite = scientistWithoutArms;
                 }
+            }
+
+            if (instructionsCanvas)
+            {
+                instructionsCanvas.gameObject.SetActive(true);
             }
         }
     }
