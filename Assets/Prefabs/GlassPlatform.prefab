@@ -266,6 +266,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7500510277427357975, guid: 5cd36013340caf64083d1494312b0423, type: 3}
       insertIndex: -1
       addedObject: {fileID: 90364175421892481}
+    - targetCorrespondingSourceObject: {fileID: 7500510277427357975, guid: 5cd36013340caf64083d1494312b0423, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7448220739165570221}
   m_SourcePrefab: {fileID: 100100000, guid: 5cd36013340caf64083d1494312b0423, type: 3}
 --- !u!4 &2126617963429582965 stripped
 Transform:
@@ -361,6 +364,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e6a9711f80a9e448ff517779321c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7448220739165570221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6472151191206791363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee03b9becd0dce44bec5beaec40ebab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glassBreakAudioSource: {fileID: 0}
 --- !u!1001 &7100553026244690567
 PrefabInstance:
   m_ObjectHideFlags: 0
