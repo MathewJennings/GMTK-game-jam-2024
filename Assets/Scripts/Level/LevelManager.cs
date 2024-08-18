@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
         int currentLevelIndex = instance.levelNames.IndexOf(SceneManager.GetActiveScene().name);
         if (currentLevelIndex == instance.levelNames.Count - 1)
         {
-            sceneTransitioner.LoadScene("The End", 2f, 0.2f, LeanTweenType.easeInExpo);
+            sceneTransitioner.LoadScene("TheEnd", 2f, 0.2f, LeanTweenType.easeInExpo);
         }
         else
         {
