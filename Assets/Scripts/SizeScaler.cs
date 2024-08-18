@@ -61,6 +61,22 @@ public class SizeScaler : MonoBehaviour
         other.UpdateTransformScale(myMultiplier);
     }
 
+    public void Spaghettify(float newXMultiplier, float newYMultiplier)
+    {
+        float newXScale = gameObject.transform.localScale.x;
+        float newYScale = gameObject.transform.localScale.y;
+        float zScale = gameObject.transform.localScale.z;
+        if (scaleTransformX)
+        {
+            newXScale *= newXMultiplier / transformScaleMultiplier;
+        }
+        if (scaleTransformY)
+        {
+            newYScale *= newYMultiplier / transformScaleMultiplier;
+        }
+        StartSmoothScaling(newXScale, newYScale, zScale);
+    }
+
     private void UpdateTransformScale(float newMultiplier)
     {
         float newXScale = gameObject.transform.localScale.x;
@@ -79,7 +95,6 @@ public class SizeScaler : MonoBehaviour
         {
             indicatorButton.gameObject.SetActive(IsScaled());
         }
-        scaleIsChanging = true;
         StartSmoothScaling(newXScale, newYScale, zScale);
     }
 
