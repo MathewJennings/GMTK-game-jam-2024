@@ -747,6 +747,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5941769325352403122, guid: f9f583c0ffc557c4cb21909d7de0ffa5, type: 3}
   m_PrefabInstance: {fileID: 1623286643}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1640606531 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4178484442751712895, guid: 3ec38b70ea92ccd4599432b37bc668c9, type: 3}
+  m_PrefabInstance: {fileID: 1713403924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1713403924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -810,7 +815,7 @@ PrefabInstance:
     - target: {fileID: 683950977092746173, guid: 3ec38b70ea92ccd4599432b37bc668c9, type: 3}
       propertyPath: deathAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1640606531}
     - target: {fileID: 2499144670263058144, guid: 3ec38b70ea92ccd4599432b37bc668c9, type: 3}
       propertyPath: m_Name
       value: Big Enemy
