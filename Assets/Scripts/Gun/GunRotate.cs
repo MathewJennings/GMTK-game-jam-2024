@@ -37,7 +37,7 @@ public class GunRotate : MonoBehaviour
         transform.right = mousePos - transform.position;
 
         // Position the canvas above the tip of the gun and rotate it rightside up.
-        canvas.transform.position = tip.transform.position + new Vector3(0f, 0.7f, 0f);
+        canvas.transform.position = tip.transform.position + new Vector3(0.05f, 1f, 0f);
         canvas.transform.rotation = camera.transform.rotation;
 
         // Keep canvas at fixed scale
@@ -53,14 +53,14 @@ public class GunRotate : MonoBehaviour
             {
                 SizeScaler sizeScaler = player.GetComponent<SizeScaler>();
                 float sizeMult = sizeScaler.GetTransformScaleMultiplier();
-                text.SetText("Size\n" + sizeMult + "x");
+                text.SetText("Size\n" + sizeMult + "X");
                 text.color = new Color(0, 100, 255); // blue
             }
             else if (currentMode == GunShoot.Mode.MovementSpeedScale)
             {
                 MovementSpeedScaler movementSpeedScaler = player.GetComponent<MovementSpeedScaler>();
                 float speedMult = movementSpeedScaler.getMultiplier();
-                text.SetText("Speed\n" + speedMult + "x");
+                text.SetText("Speed\n" + speedMult + "X");
                 text.color = new Color(255, 90, 0); // orange
             } else
             {
