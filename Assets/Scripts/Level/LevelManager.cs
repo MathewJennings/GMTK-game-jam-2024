@@ -44,13 +44,13 @@ public class LevelManager : MonoBehaviour
         else if (instance != this)
         {
             DisableGuns();
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
@@ -71,14 +71,44 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = Time.timeScale > 0 ? 0 : 1;
         if (Time.timeScale == 0)
         {
-            pauseMenu.SetActive(true);
+            instance.pauseMenu.SetActive(true);
         }
         else
         {
-            pauseMenu.SetActive(false);
+            instance.pauseMenu.SetActive(false);
         }
     }
+    public void ClickMainMenu()
+    {
+        // TODO
+    }
 
+    public void ClickPrevLevel()
+    {
+        Time.timeScale = 1;
+        instance.pauseMenu.SetActive(false);
+        LoadPrevLevel();
+    }
+    public void ClickNextLevel()
+    {
+        Time.timeScale = 1;
+        instance.pauseMenu.SetActive(false);
+        LoadNextLevel();
+    }
+
+    public void LoadPrevLevel()
+    {
+        int currentLevelIndex = instance.levelNames.IndexOf(SceneManager.GetActiveScene().name);
+        if (currentLevelIndex <= 0)
+        {
+            return;
+        }
+        else
+        {
+            SceneTransitioner sceneTransitioner = instance.gameObject.GetComponent<SceneTransitioner>();
+            sceneTransitioner.LoadScene(instance.levelNames[--currentLevelIndex], 2f, 0.0f, LeanTweenType.easeInOutQuint);
+        }
+    }
     public void LoadNextLevel()
     {
         SceneTransitioner sceneTransitioner = instance.gameObject.GetComponent<SceneTransitioner>();
