@@ -80,7 +80,9 @@ public class LevelManager : MonoBehaviour
     }
     public void ClickMainMenu()
     {
-        // TODO
+        Time.timeScale = 1;
+        instance.pauseMenu.SetActive(false);
+        // TODO: Add a load main menu function.
     }
 
     public void ClickPrevLevel()
