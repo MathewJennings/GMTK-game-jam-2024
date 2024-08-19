@@ -13,6 +13,9 @@ public class SceneTransitioner : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI levelText;
 
+    [SerializeField]
+    private SoundtrackManager soundtrackManager;
+
     private Vector3 fullyExpandedVector = new Vector3(3f, 3f, 3f);
 
     private void Awake()
@@ -35,6 +38,7 @@ public class SceneTransitioner : MonoBehaviour
             levelText.gameObject.SetActive(true);
             TriggerWaitAndLoadScene(sceneName, easeType, pauseTime, transitionTime / 2);
         });
+        soundtrackManager.UpdateTrackForLevel(sceneName);
     }
 
     private Coroutine TriggerWaitAndLoadScene(string sceneName, LeanTweenType easeType, float pauseTime, float transitionBackTime)
