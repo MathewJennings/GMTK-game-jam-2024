@@ -48,20 +48,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/8_-_A_Dangerous_Development.unity
     guid: 0fb3b0282be84064a81771812a1238e4
   - enabled: 1
-    path: Assets/Scenes/Levels/9_-_Warp_Speed.unity
+    path: Assets/Scenes/Levels/9_-_Ludicrous_Speed.unity
     guid: cc1f9c4a7747a43ec9da0bfa48d3cbb4
   - enabled: 1
-    path: Assets/Scenes/Levels/10_-_Ludicrous_Speed.unity
-    guid: 500a40c171046b341b61531ec19e35a5
-  - enabled: 1
-    path: Assets/Scenes/Levels/11_-_The_Zipper.unity
+    path: Assets/Scenes/Levels/10_-_The_Zipper.unity
     guid: b6759727a79c1487a9fffc5bd52d288c
   - enabled: 1
-    path: Assets/Scenes/Levels/12_-_The Climax.unity
-    guid: 952d95ed244bed74598d6336e34c63ab
+    path: Assets/Scenes/Levels/11_-_The_Anticlimax.unity
+    guid: 55f123767357ddf48887b407cf821845
   - enabled: 1
-    path: Assets/Scenes/Levels/Welcome.unity
-    guid: 70399b2a073914c5da3b0fb7737f3d15
+    path: Assets/Scenes/Levels/12_-_The_Climax.unity
+    guid: 952d95ed244bed74598d6336e34c63ab
   - enabled: 1
     path: Assets/Scenes/Levels/The_End.unity
     guid: 7402e01d83b4946abb8e137e9b7c51c7
