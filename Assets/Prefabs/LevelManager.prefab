@@ -1132,6 +1132,7 @@ GameObject:
   - component: {fileID: 607800113437778166}
   - component: {fileID: 6749985332257198095}
   - component: {fileID: 6209180989020845273}
+  - component: {fileID: 8411957523205540751}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1170,6 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fader: {fileID: 2397345186721198296}
   levelText: {fileID: 6471447021244827913}
+  soundtrackManager: {fileID: 8411957523205540751}
 --- !u!114 &6749985332257198095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1308,6 +1310,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8411957523205540751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6805307391159900351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c1d62d6579d47d2a6286b6ef59a19e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultClip: {fileID: 8300000, guid: 062216f0e102f4665bcc4cba849717f3, type: 3}
+  penultimateClip: {fileID: 8300000, guid: 1452bd3610ccf48a7994323b17976c7a, type: 3}
+  penultimateScene: 12_-_The Climax
+  finalClip: {fileID: 8300000, guid: aa19ad05d71e241a18f8c6ceb4b38e2a, type: 3}
+  finalScene: The_End
+  audioSource: {fileID: 6209180989020845273}
 --- !u!1 &6866324731267486511
 GameObject:
   m_ObjectHideFlags: 0
